@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.vedantiladda.quiz.user.GameActivity;
 import com.example.vedantiladda.quiz.user.UserMain;
 
 public class LoginActivity extends AppCompatActivity {
@@ -13,7 +14,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        startActivity(new Intent(LoginActivity.this, UserMain.class));
+        startActivity(new Intent(LoginActivity.this, GameActivity.class));
 
     }
 }

@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.example.vedantiladda.quiz.R;
 import com.example.vedantiladda.quiz.adapter.RVContestsAdapter;
-import com.example.vedantiladda.quiz.dto.Category;
+import com.example.vedantiladda.quiz.dto.CategoryDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +28,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class UserContests extends Fragment implements RVContestsAdapter.CategoryAdapterCommunicator {
+
     private static final String TAG = "USERCATEGORY";
 
     private Retrofit retrofit;
@@ -35,10 +36,7 @@ public class UserContests extends Fragment implements RVContestsAdapter.Category
     private RecyclerView recyclerView;
     private RVContestsAdapter rvContestsAdapter;
 
-    private List<Category> categories = new ArrayList<>();
-
-
-
+    private List<CategoryDTO> categories = new ArrayList<>();
 
     @Nullable
     @Override
@@ -55,12 +53,12 @@ public class UserContests extends Fragment implements RVContestsAdapter.Category
         getAllCategory();
 
         // Hardcoded categories
-//        Category category = new Category();
-//        category.setCategoryId("1234");
-//        category.setCategoryName("Rohit");
-//        categories.add(category);
+//        CategoryDTO categoryDTO = new CategoryDTO();
+//        categoryDTO.setCategoryId("1234");
+//        categoryDTO.setCategoryName("Rohit");
+//        categories.add(categoryDTO);
 //
-//        Category category1 = new Category();
+//        CategoryDTO category1 = new CategoryDTO();
 //        category1.setCategoryName("Nilay");
 //        category1.setCategoryId("2121");
 //        categories.add(category1);
@@ -73,10 +71,10 @@ public class UserContests extends Fragment implements RVContestsAdapter.Category
     }
 
     @Override
-    public void itemClick(String category) {
+    public void itemClick(CategoryDTO categoryDTO) {
         Toast.makeText(getActivity(),"YO",Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getActivity(), ContestNames.class);
-        intent.putExtra("category", category);
+        intent.putExtra("categoryDTO", categoryDTO);
         startActivity(intent);
     }
 
@@ -91,10 +89,10 @@ public class UserContests extends Fragment implements RVContestsAdapter.Category
                 .build();
 
         UserApiCall userApiCall = retrofit.create(UserApiCall.class);
-        Call<List<Category>> getAllCategories = userApiCall.getCategoryForContest();
-        getAllCategories.enqueue(new Callback<List<Category>>() {
+        Call<List<CategoryDTO>> getAllCategories = userApiCall.getCategoryForContest();
+        getAllCategories.enqueue(new Callback<List<CategoryDTO>>() {
             @Override
-            public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
+            public void onResponse(Call<List<CategoryDTO>> call, Response<List<CategoryDTO>> response) {
                 categories.clear();
                 categories.addAll(response.body());
                 rvContestsAdapter.notifyDataSetChanged();
@@ -105,7 +103,7 @@ public class UserContests extends Fragment implements RVContestsAdapter.Category
             }
 
             @Override
-            public void onFailure(Call<List<Category>> call, Throwable t) {
+            public void onFailure(Call<List<CategoryDTO>> call, Throwable t) {
                 Toast.makeText(getActivity(),"API call failed" , Toast.LENGTH_SHORT).show();
                 Log.i(TAG, "API CALL FAILED");
 
@@ -120,7 +118,6 @@ public class UserContests extends Fragment implements RVContestsAdapter.Category
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //you can set the title for your toolbar here for different fragments different titles
         getActivity().setTitle(getString(R.string.title_user_contests));
     }
 

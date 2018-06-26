@@ -1,6 +1,8 @@
 package com.example.vedantiladda.quiz.dto;
 
-public class Category{
+import java.io.Serializable;
+
+public class CategoryDTO implements Serializable{
 	private String categoryName;
 	private String categoryId;
 
@@ -23,7 +25,7 @@ public class Category{
 	@Override
  	public String toString(){
 		return 
-			"Category{" + 
+			"CategoryDTO{" +
 			"categoryName = '" + categoryName + '\'' + 
 			",categoryId = '" + categoryId + '\'' + 
 			"}";

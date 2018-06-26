@@ -5,24 +5,22 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.vedantiladda.quiz.R;
-import com.example.vedantiladda.quiz.dto.Category;
+import com.example.vedantiladda.quiz.dto.CategoryDTO;
 
 import java.util.List;
 
 public class RVContestsAdapter extends RecyclerView.Adapter<RVContestsAdapter.PostsViewHolder>{
 
-    private List<Category> categoryList;
-    private Category category;
+    private List<CategoryDTO> categoryDTOList;
+    private CategoryDTO categoryDTO;
     private CategoryAdapterCommunicator icategoryAdapterCommunicator;
 
 
-    public RVContestsAdapter(List<Category> categories, CategoryAdapterCommunicator categoryAdapterCommunicator) {
-        this.categoryList = categories;
+    public RVContestsAdapter(List<CategoryDTO> categories, CategoryAdapterCommunicator categoryAdapterCommunicator) {
+        this.categoryDTOList = categories;
         this.icategoryAdapterCommunicator = categoryAdapterCommunicator;
     }
 
@@ -36,20 +34,20 @@ public class RVContestsAdapter extends RecyclerView.Adapter<RVContestsAdapter.Po
 
     @Override
     public void onBindViewHolder(@NonNull PostsViewHolder viewHolder, final int position) {
-        category = categoryList.get(position);
-        viewHolder.categoryName.setText(String.valueOf(category.getCategoryName()));
+        categoryDTO = categoryDTOList.get(position);
+        viewHolder.categoryName.setText(String.valueOf(categoryDTO.getCategoryName()));
         viewHolder.categoryName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String category = categoryList.get(position).getCategoryName();
-                icategoryAdapterCommunicator.itemClick(category);
+                CategoryDTO categoryDTO = categoryDTOList.get(position);
+                icategoryAdapterCommunicator.itemClick(categoryDTO);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return categoryList.size();
+        return categoryDTOList.size();
     }
 
     public class PostsViewHolder extends RecyclerView.ViewHolder{
@@ -64,6 +62,6 @@ public class RVContestsAdapter extends RecyclerView.Adapter<RVContestsAdapter.Po
     }
 
     public interface  CategoryAdapterCommunicator{
-        public void itemClick(String category);
+        public void itemClick(CategoryDTO categoryDTO);
     }
 }

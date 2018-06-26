@@ -80,30 +80,9 @@ public class UserMain extends AppCompatActivity
         displaySelectedScreen(item.getItemId());
         //make this method blank
         return true;
-
-//        int id = item.getItemId();
-//
-//        if (id == R.id.nav_contests) {
-//            // Handle the camera action
-//        } else if (id == R.id.nav_leaderboard) {
-//
-//        } else if (id == R.id.nav_slideshow) {
-//
-//        } else if (id == R.id.nav_manage) {
-//
-//        } else if (id == R.id.nav_share) {
-//
-//        } else if (id == R.id.nav_send) {
-//
-//        }
-
-//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-//        drawer.closeDrawer(GravityCompat.START);
-//        return true;
     }
 
     private void displaySelectedScreen(int itemId) {
-
         //creating fragment object
         Fragment fragment = null;
 
@@ -111,6 +90,9 @@ public class UserMain extends AppCompatActivity
         switch (itemId) {
             case R.id.nav_contests:
                 fragment = new UserContests();
+                break;
+            case R.id.nav_dynamic:
+                fragment = new UserDynamicContests();
                 break;
             case R.id.nav_leaderboard:
                 fragment = new Leaderboard();
