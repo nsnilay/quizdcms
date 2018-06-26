@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Quiz</string>
+        <string name="category">Choose a category</string>
+
+        <string-array name="category_arrays">
+            <item>Select</item>
+        </string-array>
+    <string name="contest_type_spinner">Quiz</string>
+        <string name="ContestType">Choose Contest Type</string>
+
+    <string-array name="contest_type_arrays">
+        <item>Select</item>
+        <item>static</item>
+        <item>dynamic</item>
+    </string-array>
+    <string name="contest_create_base_url">http://10.177.2.201:8080/contest/</string>
+    <string name="get_categories_base_url">http://10.177.1.100:8080/question/</string>
 </resources>
