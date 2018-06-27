@@ -14,5 +14,5 @@
         <item>dynamic</item>
     </string-array>
     <string name="contest_create_base_url">http://10.177.2.201:8080/contest/</string>
-    <string name="get_categories_base_url">http://10.177.1.100:8080/question/</string>
+    <string name="get_categories_base_url">http://10.177.2.15:8080/question/</string>
 </resources>
