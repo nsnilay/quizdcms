@@ -1,6 +1,7 @@
 package com.example.vedantiladda.quiz;
 
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -277,6 +278,13 @@ public class ContestCreationActivity extends AppCompatActivity {
                    @Override
                    public void onResponse(Call<Boolean> call, Response<Boolean> response) {
                        Toast.makeText(ContestCreationActivity.this, "Done" , Toast.LENGTH_LONG).show();
+
+
+                       Intent intent = new Intent(ContestCreationActivity.this,QuestionBankActivity.class);
+                       intent.putExtra("ContestType",contestTypeSpinner.getSelectedItem().toString());
+                       intent.putExtra("Contest_CategoryId",getTag(selectCategoryButton.getText().toString()));
+                       startActivity(intent);
+
 
                    }
 
