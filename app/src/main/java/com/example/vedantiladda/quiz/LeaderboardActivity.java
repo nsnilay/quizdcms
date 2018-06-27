@@ -1,24 +1,40 @@
 package com.example.vedantiladda.quiz;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.vedantiladda.quiz.dto.ContestDTO;
 //import com.example.vedantiladda.quiz.model.StaticContest;
+import com.example.vedantiladda.quiz.dto.ContestwiseDTO;
+import com.example.vedantiladda.quiz.dto.OverallDTO;
 import com.example.vedantiladda.quiz.dto.UserDTO;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -27,14 +43,20 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class LeaderboardActivity extends AppCompatActivity implements LeaderboardAdapter.LeaderboardCommunicator,AdapterView.OnItemSelectedListener {
+public class LeaderboardActivity extends AppCompatActivity implements LeaderboardAdapter.LeaderboardCommunicator,LeaderboardAdapter1.LeaderboardCommunicator1 {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
+    private RecyclerView.Adapter mAdapter1;
     private RecyclerView.LayoutManager mLayoutManager;
-    private static String url = "http://10.177.2.201:8080";
+    private static String url = "http://10.177.2.149:8080";
     private List<UserDTO> userDTOS = new ArrayList<>();
     private List<ContestDTO> contestDTOS = new ArrayList<>();
     private List<String> staticContestList = new ArrayList<>();
+    private List<OverallDTO> overallDTOS = new ArrayList<>();
+    private List<ContestwiseDTO> contestwiseDTOS = new ArrayList<>();
+    final Map<String, String> staticContestMap= new HashMap<String,String>();
+    String popUpContents[];
+    Button contestListButton;
     String contest;
     OkHttpClient client = new OkHttpClient.Builder().build();
     final Retrofit retrofit = new Retrofit.Builder()
@@ -44,46 +66,34 @@ public class LeaderboardActivity extends AppCompatActivity implements Leaderboar
             .build();
 
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboard);
 
-        Spinner spin = (Spinner) findViewById(R.id.spinner);
-        spin.setOnItemSelectedListener(this);
 
-//        ContestDTO staticContest1 = new ContestDTO();
-//        staticContest1.setContestName("ha ha ha ha");
-//        ContestDTO staticContest2 = new ContestDTO();
-//        staticContest2.setContestName("ha ha ha ha ha");
-//        contestDTOS.add(staticContest1);
-//        contestDTOS.add(staticContest2);
 
+
+        contestListButton = findViewById(R.id.contest_list_button);
+        initContestListButton();
         GetAllContest();
-
-//        for(ContestDTO contestDTO:contestDTOS)
-//        {
-//            staticContestList.add(contestDTO.getContestName());
-//        }
-        //staticContestList.add(contestDTOS.get(0).getContestName());
-        Log.d("STATIC", staticContestList.toString());
-        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,staticContestList);
-        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        spin.setAdapter(aa);
-
-        //contest = getIntent().getExtras().getString("contestName");
-
-
+        int i = 0;
+        popUpContents = new String[staticContestList.size()];
+        staticContestList.toArray(popUpContents);
         mRecyclerView = (RecyclerView) findViewById(R.id.leaderboardRecycler);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
 
-        mAdapter = new LeaderboardAdapter(userDTOS, LeaderboardActivity.this);
+        mAdapter = new LeaderboardAdapter(overallDTOS, LeaderboardActivity.this);
+        mAdapter1 = new LeaderboardAdapter1(contestwiseDTOS, LeaderboardActivity.this);
+
         mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setAdapter(mAdapter1);
         mAdapter.notifyDataSetChanged();
+        mAdapter1.notifyDataSetChanged();
 
 //        UserDTO userDTO1 = new UserDTO();
 //        UserDTO userDTO2 = new UserDTO();
@@ -109,94 +119,120 @@ public class LeaderboardActivity extends AppCompatActivity implements Leaderboar
 
 
     }
+    private void initContestListButton()
+    {
+        final PopupWindow popupWindowContests = popupWindowContests();
 
-    @Override
-    public void onClickTextView(String id) {
 
+        // button on click listener
+
+        View.OnClickListener handler = new View.OnClickListener() {
+            public void onClick(View v) {
+
+                switch (v.getId()) {
+
+                    case R.id.contest_list_button:
+                        // show the list view as dropdown
+                        popupWindowContests.showAsDropDown(v, -5, 0);
+                        break;
+                }
+            }
+        };
+
+        contestListButton.setOnClickListener(handler);
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        Toast.makeText(getApplicationContext(),contestDTOS.get(i).getContestName() , Toast.LENGTH_LONG).show();
 
-        GetLeaderboard(contestDTOS.get(i).getContestName());
-        /* IApiCall iApiCall = retrofit.create(IApiCall.class);
-        final Call<List<UserDTO>> getAllCall = iApiCall.getAllOverall(contestName);
-        getAllCall.enqueue(new Callback<List<UserDTO>>() {
+
+
+    public PopupWindow popupWindowContests() {
+
+        // initialize a pop up window type
+        PopupWindow popupWindow = new PopupWindow(this);
+
+        // the drop down list is a list view
+        ListView listViewContest = new ListView(this);
+
+        // set our adapter and pass our pop up window contents
+        listViewContest.setAdapter(contestListAdapter(popUpContents));
+
+        // set the item click listener
+        listViewContest.setOnItemClickListener(new CustomOnClickListner());
+
+        // some other visual settings
+        popupWindow.setFocusable(true);
+        popupWindow.setWidth(WindowManager.LayoutParams.MATCH_PARENT);
+        popupWindow.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
+
+        // set the list view as pop up window content
+        popupWindow.setContentView(listViewContest);
+
+        return popupWindow;
+    }
+    private ArrayAdapter<String> contestListAdapter(String popUpContents[]) {
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,staticContestList) {
+
             @Override
-            public void onResponse(Call<List<UserDTO>> call, Response<List<UserDTO>> response) {
-                userDTOS.clear();
-                userDTOS.addAll(response.body());
+            public View getView(int position, View convertView, ViewGroup parent) {
+
+                TextView listItem = new TextView(LeaderboardActivity.this);
+                String item = getItem(position);
+                listItem.setText(item);
+                listItem.setTextSize(22);
+                listItem.setPadding(10, 10, 10, 10);
+                listItem.setTextColor(Color.WHITE);
+
+                return listItem;
+            }
+        };
+        return adapter;
+    }
+    public void GetContestWiseLeaderboard(String contestId){
+
+        IApiCall iApiCall = retrofit.create(IApiCall.class);
+        final Call<List<ContestwiseDTO>> getContestWiseCall = iApiCall.getContestwisePoints(contestId);
+        getContestWiseCall.enqueue(new Callback<List<ContestwiseDTO>>() {
+            @Override
+            public void onResponse(Call<List<ContestwiseDTO>> call, Response<List<ContestwiseDTO>> response) {
+                contestwiseDTOS.clear();
+                contestwiseDTOS.addAll(response.body());
+                mAdapter1.notifyDataSetChanged();
+                Toast.makeText(LeaderboardActivity.this, "received", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFailure(Call<List<ContestwiseDTO>> call, Throwable t) {
+                Toast.makeText(LeaderboardActivity.this, "failed", Toast.LENGTH_LONG).show();
+
+            }
+
+        });
+    }
+    public void GetOverallLeaderboard(){
+
+
+         IApiCall iApiCall = retrofit.create(IApiCall.class);
+        final Call<List<OverallDTO>> getAllCall = iApiCall.getOverAll();
+        getAllCall.enqueue(new Callback<List<OverallDTO>>() {
+            @Override
+            public void onResponse(Call<List<OverallDTO>> call, Response<List<OverallDTO>> response) {
+                overallDTOS.clear();
+                overallDTOS.addAll(response.body());
                 mAdapter.notifyDataSetChanged();
                 Toast.makeText(LeaderboardActivity.this, "received", Toast.LENGTH_LONG).show();
             }
 
             @Override
-            public void onFailure(Call<List<UserDTO>> call, Throwable t) {
+            public void onFailure(Call<List<OverallDTO>> call, Throwable t) {
                 Toast.makeText(LeaderboardActivity.this, "failed", Toast.LENGTH_LONG).show();
 
             }
 
-        });*/
-
-
-
-
-
-
+        });
     }
 
-    public void GetLeaderboard(String contestName){
-        /*if(contestName == contestDTOS.get(0).getContestName()) {
-            userDTOS.clear();
-            UserDTO userDTO1 = new UserDTO();
-            UserDTO userDTO2 = new UserDTO();
-            UserDTO userDTO5 = new UserDTO();
-            UserDTO userDTO6 = new UserDTO();
-            userDTO1.setUserName("username1");
-            userDTO2.setUserName("username2");
-            userDTO5.setUserName("username5");
-            userDTO6.setUserName("username6");
-            userDTOS.add(userDTO1);
-            userDTOS.add(userDTO2);
-            userDTOS.add(userDTO5);
-            userDTOS.add(userDTO6);
-            mAdapter.notifyDataSetChanged();
-        }
-
-        else if(contestName == contestDTOS.get(1).getContestName()) {
-
-            userDTOS.clear();
-            UserDTO userDTO3 = new UserDTO();
-            UserDTO userDTO4 = new UserDTO();
-            userDTO3.setUserName("username3");
-            userDTO4.setUserName("username4");
-            userDTOS.add(userDTO3);
-            userDTOS.add(userDTO4);
-            mAdapter.notifyDataSetChanged();
-        }*/
-
-        /* IApiCall iApiCall = retrofit.create(IApiCall.class);
-        final Call<List<UserDTO>> getAllCall = iApiCall.getAllOverall(contestName);
-        getAllCall.enqueue(new Callback<List<UserDTO>>() {
-            @Override
-            public void onResponse(Call<List<UserDTO>> call, Response<List<UserDTO>> response) {
-                userDTOS.clear();
-                userDTOS.addAll(response.body());
-                mAdapter.notifyDataSetChanged();
-                Toast.makeText(LeaderboardActivity.this, "received", Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onFailure(Call<List<UserDTO>> call, Throwable t) {
-                Toast.makeText(LeaderboardActivity.this, "failed", Toast.LENGTH_LONG).show();
-
-            }
-
-        });*/
-    }
-
-    public void GetAllContest(){
+    public List<String> GetAllContest(){
         final IApiCall iApiCall = retrofit.create(IApiCall.class);
         final Call<List<ContestDTO>> getAllCall = iApiCall.getAllOverall();
         getAllCall.enqueue(new Callback<List<ContestDTO>>() {
@@ -207,7 +243,10 @@ public class LeaderboardActivity extends AppCompatActivity implements Leaderboar
                 for(ContestDTO contestDTO:contestDTOS)
                 {
                     staticContestList.add(contestDTO.getContestName());
+                    staticContestMap.put(contestDTO.getContestName(),contestDTO.getContestId());
                 }
+                staticContestList.add("Overall");
+                //staticContestList1.add("0");
 
                 Toast.makeText(LeaderboardActivity.this, "received", Toast.LENGTH_LONG).show();
 
@@ -218,12 +257,51 @@ public class LeaderboardActivity extends AppCompatActivity implements Leaderboar
             public void onFailure(Call<List<ContestDTO>> call, Throwable t) {
                 Log.d("API",t.getMessage());
                 Toast.makeText(LeaderboardActivity.this, "failed", Toast.LENGTH_LONG).show();
+                staticContestList.add("Test Element");
             }
         });
+        return staticContestList;
     }
 
+    public class CustomOnClickListner implements AdapterView.OnItemClickListener {
+
+
+        @Override
+        public void onItemClick(AdapterView<?> arg0, View v, int arg2, long arg3) {
+
+            // get the context and main activity to access variables
+            contestListButton = findViewById(R.id.contest_list_button);
+            Context mContext = v.getContext();
+            LeaderboardActivity lActivity = ((LeaderboardActivity) mContext);
+
+            // add some animation when a list item was clicked
+            Animation fadeInAnimation = AnimationUtils.loadAnimation(v.getContext(), android.R.anim.fade_in);
+            fadeInAnimation.setDuration(10);
+            v.startAnimation(fadeInAnimation);
+
+            // dismiss the pop up
+            lActivity.popupWindowContests().dismiss();
+
+            // get the text and set it as the button text
+            String selectedItemText = ((TextView) v).getText().toString();
+            lActivity.contestListButton.setText(selectedItemText);
+            if(contestListButton.getText().equals("Overall"))
+            {
+                GetOverallLeaderboard();
+            }
+            else
+            {
+                GetContestWiseLeaderboard(staticContestMap.get(contestListButton.getText().toString()));
+            }
+
+
+        }
+
+    }
+
+
     @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
+    public void onClickTextView(String id) {
 
     }
 }
