@@ -90,10 +90,10 @@ public class LeaderboardActivity extends AppCompatActivity implements Leaderboar
         mAdapter = new LeaderboardAdapter(overallDTOS, LeaderboardActivity.this);
         mAdapter1 = new LeaderboardAdapter1(contestwiseDTOS, LeaderboardActivity.this);
 
-        mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.setAdapter(mAdapter1);
-        mAdapter.notifyDataSetChanged();
-        mAdapter1.notifyDataSetChanged();
+
+
+       // mAdapter.notifyDataSetChanged();
+        //mAdapter1.notifyDataSetChanged();
 
 //        UserDTO userDTO1 = new UserDTO();
 //        UserDTO userDTO2 = new UserDTO();
@@ -195,6 +195,7 @@ public class LeaderboardActivity extends AppCompatActivity implements Leaderboar
         getContestWiseCall.enqueue(new Callback<List<ContestwiseDTO>>() {
             @Override
             public void onResponse(Call<List<ContestwiseDTO>> call, Response<List<ContestwiseDTO>> response) {
+                mRecyclerView.setAdapter(mAdapter1);
                 contestwiseDTOS.clear();
                 contestwiseDTOS.addAll(response.body());
                 mAdapter1.notifyDataSetChanged();
@@ -217,6 +218,7 @@ public class LeaderboardActivity extends AppCompatActivity implements Leaderboar
         getAllCall.enqueue(new Callback<List<OverallDTO>>() {
             @Override
             public void onResponse(Call<List<OverallDTO>> call, Response<List<OverallDTO>> response) {
+                mRecyclerView.setAdapter(mAdapter);
                 overallDTOS.clear();
                 overallDTOS.addAll(response.body());
                 mAdapter.notifyDataSetChanged();

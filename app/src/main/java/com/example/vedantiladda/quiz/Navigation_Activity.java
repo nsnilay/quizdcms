@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.vedantiladda.quiz.dto.ContestDTO;
+import com.example.vedantiladda.quiz.login.LoginActivity;
 //import com.example.vedantiladda.quiz.model.StaticContest;
 
 import java.util.ArrayList;
@@ -90,7 +91,7 @@ public class Navigation_Activity extends AppCompatActivity
         recyclerView1 = (RecyclerView) findViewById(R.id.dynamicRecycler);
 
         contesttype = "static";
-        contesttype1 = "Dynamic";
+        contesttype1 = "dynamic";
         recyclerView.setHasFixedSize(true);
         recyclerView1.setHasFixedSize(true);
 
@@ -131,7 +132,7 @@ public class Navigation_Activity extends AppCompatActivity
 
         final     SharedPreferences sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
         nav_header_nam.setText(sharedPreferences.getString("userName",TextViewValue));
-        nav_header_emal.setText(sharedPreferences.getString("emailId",TextViewValue1));
+        nav_header_emal.setText(sharedPreferences.getString("Email",TextViewValue1));
 
        // dynamic_contest_name = (TextView) findViewById(R.id.dynamicContestName);
 
@@ -188,8 +189,12 @@ public class Navigation_Activity extends AppCompatActivity
         if (id == R.id.nav_crawl) {
             // Handle the camera action
         } else if (id == R.id.nav_contest) {
+            Intent intent = new Intent(Navigation_Activity.this,ContestCreationActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_screen) {
+            Intent intent = new Intent(Navigation_Activity.this,ContentScreeningActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_leaderboard) {
             Intent intent = new Intent(this, LeaderboardActivity.class);
@@ -199,6 +204,17 @@ public class Navigation_Activity extends AppCompatActivity
         } else if (id == R.id.nav_report) {
 
         } else if (id == R.id.nav_logout) {
+            SharedPreferences sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.remove("userName");
+            editor.commit();
+
+            Toast.makeText(getApplicationContext(),"Succesfully logged out!",Toast.LENGTH_SHORT).show();
+
+            //Put the updated launcher activity here
+            Intent intent = new Intent(Navigation_Activity.this,LoginActivity.class);
+            startActivity(intent);
+
 
         }
 

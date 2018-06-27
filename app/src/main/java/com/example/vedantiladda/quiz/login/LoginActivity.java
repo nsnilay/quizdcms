@@ -17,6 +17,8 @@ import com.example.vedantiladda.quiz.Navigation_Activity;
 import com.example.vedantiladda.quiz.R;
 import com.example.vedantiladda.quiz.dto.UserDTO;
 import com.example.vedantiladda.quiz.dto.UserLogin;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -39,6 +41,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,19 +55,26 @@ public class LoginActivity extends AppCompatActivity {
 
 
         OkHttpClient client = new OkHttpClient.Builder().build();
-
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(url)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(client)
                 .build();
+        final     SharedPreferences sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
+        if(sharedPreferences.contains("userName")){
+            Intent intent = new Intent(this,Navigation_Activity.class);
+            startActivity(intent);
+        }
 
         Button login_button = findViewById(R.id.login_button);
 
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String editTextValue = editText.getText().toString();
+                final String editTextValue = editText.getText().toString();
                 String editTextValue9 = editText9.getText().toString();
 
 
@@ -99,6 +110,7 @@ public class LoginActivity extends AppCompatActivity {
                             SharedPreferences sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
                             editor.putString("userName", username);
+                            editor.putString("Email",editTextValue );
                             editor.apply();
 
                             Toast.makeText(getApplicationContext(), "successfully logged in!", Toast.LENGTH_SHORT).show();
