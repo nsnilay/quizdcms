@@ -68,4 +68,7 @@ public interface IApiCall {
     @POST("/crawler/crawl/")
     Call<Boolean> crawl(@Body UrlDTO urlDTO);
 
+    @POST("/contest/setRules")
+    Call<ContestRulesDTO> addRules(@Body ContestRulesDTO contestRulesDTO);
+
 }
