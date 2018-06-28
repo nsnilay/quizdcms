@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -31,17 +32,25 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.Question
     }
 
     @Override
-    public void onBindViewHolder(@NonNull QuestionHolder questionHolder, int i) {
+    public void onBindViewHolder(@NonNull final QuestionHolder questionHolder, int i) {
         final QuestionDTO questionDTO = questionDTOList.get(i);
         questionHolder.questionContent.setText(questionDTO.getQuestionContent());
         questionHolder.questionDifficulty.setText(questionDTO.getDifficulty());
-        Boolean switchState = questionHolder.status.isChecked();
-        if(switchState == true){
-            communicator.onSetSwitch(questionDTO.getQuestionId());
-        }
-        if(switchState == false){
-            communicator.onReleaseSwitch(questionDTO.getQuestionId());
-        }
+        final Boolean switchState = questionHolder.status.isChecked();
+        questionHolder.status.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b){
+                    communicator.onSetSwitch(questionDTO.getQuestionId());
+                    questionHolder.status.setText("Approve");
+                }
+                else{
+                    communicator.onReleaseSwitch(questionDTO.getQuestionId());
+                    questionHolder.status.setText("Reject");
+                }
+            }
+        });
+
     }
 
 

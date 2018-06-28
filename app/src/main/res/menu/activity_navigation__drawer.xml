@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_crawl"
+            android:icon="@drawable/about_us_drawer"
+            android:title="Crawl" />
+        <item
+            android:id="@+id/nav_contest"
+            android:icon="@drawable/feedback_drawer"
+            android:title="Create Contest" />
+        <item
+            android:id="@+id/nav_screen"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Screening" />
+        <item
+            android:id="@+id/nav_leaderboard"
+            android:icon="@drawable/scorecard_drwaer"
+            android:title="Leaderboard" />
+        <item
+            android:id="@+id/nav_report"
+            android:icon="@drawable/ic_menu_share"
+            android:title="Report" />
+    </group>
+
+    <item android:title="Rules">
+        <menu>
+            <item
+                android:id="@+id/nav_set_rules"
+                android:icon="@drawable/ic_menu_manage"
+                android:title="Set Rules" />
+        </menu>
+    </item>
+
+    <item android:title="Profile">
+        <menu>
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Logout" />
+        </menu>
+    </item>
+
+</menu>

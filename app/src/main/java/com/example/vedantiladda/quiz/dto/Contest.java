@@ -1,10 +1,10 @@
 package com.example.vedantiladda.quiz.dto;
 
-
-
+import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.List;
 
-public class Contest {
+public class Contest implements Serializable {
 
     private String contestId;
     private String contestName;
@@ -17,6 +17,15 @@ public class Contest {
     private String categoryName;
     private String email;
     private Integer numberOfQuestions;
+    private List<ContestQuestionDTO> contestQuestionDTOList;
+
+    public List<ContestQuestionDTO> getContestQuestionDTOList() {
+        return contestQuestionDTOList;
+    }
+
+    public void setContestQuestionDTOList(List<ContestQuestionDTO> contestQuestionDTOList) {
+        this.contestQuestionDTOList = contestQuestionDTOList;
+    }
 
     public Integer getNumberOfQuestions() {
         return numberOfQuestions;

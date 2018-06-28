@@ -7,7 +7,7 @@ public class QuestionDTO implements Serializable{
     private String categoryId;
     private String difficulty;
     private String questionType;
-    private String questionContent;
+    private String questionText;
     private String questionURL;
     private String optionOne;
     private String optionTwo;
@@ -16,6 +16,15 @@ public class QuestionDTO implements Serializable{
     private String answer;
     private String answerType;
     private String Status;
+    private Boolean checked=false;
+
+    public Boolean getChecked() {
+        return checked;
+    }
+
+    public void setChecked(Boolean checked) {
+        this.checked = checked;
+    }
 
     @Override
     public String toString() {
@@ -24,7 +33,7 @@ public class QuestionDTO implements Serializable{
                 ", categoryId='" + categoryId + '\'' +
                 ", difficulty='" + difficulty + '\'' +
                 ", questionType='" + questionType + '\'' +
-                ", questionContent='" + questionContent + '\'' +
+                ", questionContent='" + questionText + '\'' +
                 ", questionURL='" + questionURL + '\'' +
                 ", optionOne='" + optionOne + '\'' +
                 ", optionTwo='" + optionTwo + '\'' +
@@ -69,11 +78,11 @@ public class QuestionDTO implements Serializable{
     }
 
     public String getQuestionContent() {
-        return questionContent;
+        return questionText;
     }
 
     public void setQuestionContent(String questionContent) {
-        this.questionContent = questionContent;
+        this.questionText = questionContent;
     }
 
     public String getQuestionURL() {
