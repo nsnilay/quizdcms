@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".user.GameActivity"
+    tools:showIn="@layout/activity_game">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/begin_button"
+        android:layout_centerInParent="true"
+        android:text="BEgin"
+        android:background="@color/colorAccent"
+        android:textColor="@color/textColor"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/finish_button"
+        android:layout_centerInParent="true"
+        android:text="FINISH"
+        android:visibility="gone"
+        android:background="@color/colorAccent"
+        android:textColor="@color/textColor"/>
+
+    <VideoView
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:id="@+id/video"
+        android:layout_alignParentTop="true"
+        android:visibility="invisible"
+        />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:id="@+id/image"
+        android:layout_alignParentTop="true"
+        android:visibility="invisible"
+        android:background="@drawable/ic_menu_send"/>
+
+
+    <TextView
+        android:id="@+id/question_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:maxLines="4"
+        android:layout_below="@+id/image"
+        android:textColor="@color/textColor"
+        android:scrollbars="vertical"
+        android:text="TextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextView"
+        tools:text="Question"
+        android:visibility="invisible"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linear"
+        android:layout_below="@+id/question_text"
+        android:orientation="horizontal"
+        android:visibility="invisible">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/linear_left"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <CheckBox
+                android:id="@+id/option_A"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/question_text"
+                android:padding="8dp"
+                android:text="Option A" />
+
+            <CheckBox
+                android:id="@+id/option_B"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/option_A"
+                android:padding="8dp"
+                android:text="Option B" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/linear_right"
+            android:orientation="vertical"
+            android:layout_weight="1">
+            <CheckBox
+                android:id="@+id/option_C"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="Option C" />
+
+            <CheckBox
+                android:id="@+id/option_D"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="Option D" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear"
+        android:layout_alignParentEnd="true"
+        android:hint="Enter the Sequence"
+        android:id="@+id/sequence_answer"
+        android:visibility="invisible"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/skip_question_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@drawable/baseline_skip_next_white_36"
+        />
+
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/next_question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@drawable/baseline_keyboard_arrow_right_white_36"
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/skip_count_text"
+        android:text="2"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="24dp"
+        android:textSize="24dp"
+        android:layout_toRightOf="@+id/skip_question_button"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="24dp"
+        android:id="@+id/question_number"
+        android:textSize="24dp"
+        android:text="1/10" />
+
+</RelativeLayout>

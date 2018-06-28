@@ -94,6 +94,7 @@ public class QuestionBankActivity extends AppCompatActivity implements TabLayout
 
         //Adding adapter to pager
         viewPager.setAdapter(adapter);
+        viewPager.setOffscreenPageLimit(8);
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

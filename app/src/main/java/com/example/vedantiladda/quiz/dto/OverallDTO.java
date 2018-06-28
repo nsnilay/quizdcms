@@ -1,10 +1,13 @@
 package com.example.vedantiladda.quiz.dto;
 
+import java.math.BigInteger;
+
 public class OverallDTO {
     private String userId;
-    private int overAllPoints;
+    private BigInteger overAllPoints;
 
-    private int rank;
+    private BigInteger rank;
+    private Integer pointInt;
 
     public String getUserId() {
         return userId;
@@ -14,20 +17,28 @@ public class OverallDTO {
         this.userId = userId;
     }
 
-    public int getOverAllPoints() {
+    public BigInteger getOverAllPoints() {
         return overAllPoints;
     }
 
-    public void setOverAllPoints(int overAllPoints) {
+    public void setOverAllPoints(BigInteger overAllPoints) {
         this.overAllPoints = overAllPoints;
     }
 
-    public int getRank() {
+    public BigInteger getRank() {
         return rank;
     }
 
-    public void setRank(int rank) {
+    public void setRank(BigInteger rank) {
         this.rank = rank;
+    }
+
+    public Integer getPointInt() {
+        return pointInt;
+    }
+
+    public void setPointInt(Integer pointInt) {
+        this.pointInt = pointInt;
     }
 
     @Override

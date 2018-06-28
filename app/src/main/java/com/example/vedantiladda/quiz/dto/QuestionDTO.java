@@ -2,21 +2,21 @@ package com.example.vedantiladda.quiz.dto;
 
 import java.io.Serializable;
 
-public class QuestionDTO implements Serializable{
+public class QuestionDTO implements Serializable {
+
     private String questionId;
     private String categoryId;
     private String difficulty;
     private String questionType;
     private String questionText;
-    private String questionURL;
+    private String questionUrl;
     private String optionOne;
     private String optionTwo;
     private String optionThree;
     private String optionFour;
-    private String answer;
     private String answerType;
-    private String Status;
-    private Boolean checked=false;
+    private String status;
+    private Boolean checked = false;
 
     public Boolean getChecked() {
         return checked;
@@ -24,25 +24,6 @@ public class QuestionDTO implements Serializable{
 
     public void setChecked(Boolean checked) {
         this.checked = checked;
-    }
-
-    @Override
-    public String toString() {
-        return "QuestionDTO{" +
-                "questionId='" + questionId + '\'' +
-                ", categoryId='" + categoryId + '\'' +
-                ", difficulty='" + difficulty + '\'' +
-                ", questionType='" + questionType + '\'' +
-                ", questionContent='" + questionText + '\'' +
-                ", questionURL='" + questionURL + '\'' +
-                ", optionOne='" + optionOne + '\'' +
-                ", optionTwo='" + optionTwo + '\'' +
-                ", optionThree='" + optionThree + '\'' +
-                ", optionFour='" + optionFour + '\'' +
-                ", answer='" + answer + '\'' +
-                ", answerType='" + answerType + '\'' +
-                ", Status='" + Status + '\'' +
-                '}';
     }
 
     public String getQuestionId() {
@@ -77,20 +58,20 @@ public class QuestionDTO implements Serializable{
         this.questionType = questionType;
     }
 
-    public String getQuestionContent() {
+    public String getQuestionText() {
         return questionText;
     }
 
-    public void setQuestionContent(String questionContent) {
-        this.questionText = questionContent;
+    public void setQuestionText(String questionText) {
+        this.questionText = questionText;
     }
 
-    public String getQuestionURL() {
-        return questionURL;
+    public String getQuestionUrl() {
+        return questionUrl;
     }
 
-    public void setQuestionURL(String questionURL) {
-        this.questionURL = questionURL;
+    public void setQuestionUrl(String questionUrl) {
+        this.questionUrl = questionUrl;
     }
 
     public String getOptionOne() {
@@ -125,14 +106,6 @@ public class QuestionDTO implements Serializable{
         this.optionFour = optionFour;
     }
 
-    public String getAnswer() {
-        return answer;
-    }
-
-    public void setAnswer(String answer) {
-        this.answer = answer;
-    }
-
     public String getAnswerType() {
         return answerType;
     }
@@ -142,10 +115,31 @@ public class QuestionDTO implements Serializable{
     }
 
     public String getStatus() {
-        return Status;
+        return status;
     }
 
     public void setStatus(String status) {
-        Status = status;
+        this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "QuestionDTO{" +
+                "questionId='" + questionId + '\'' +
+                ", categoryId='" + categoryId + '\'' +
+                ", difficulty='" + difficulty + '\'' +
+                ", questionType='" + questionType + '\'' +
+                ", questionText='" + questionText + '\'' +
+                ", questionUrl='" + questionUrl + '\'' +
+                ", optionOne='" + optionOne + '\'' +
+                ", optionTwo='" + optionTwo + '\'' +
+                ", optionThree='" + optionThree + '\'' +
+                ", optionFour='" + optionFour + '\'' +
+                ", answerType='" + answerType + '\'' +
+                ", status='" + status + '\'' +
+                '}';
+    }
+
 }
+
+

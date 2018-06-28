@@ -42,7 +42,7 @@ public class MediumFragment extends Fragment implements PaginationAdapter.Commun
     private List<QuestionDTO> questionDTOList = new ArrayList<>();
         OkHttpClient client = new OkHttpClient.Builder().build();
     final Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl(" http://10.177.2.15:8080/")
+            .baseUrl(" http://10.177.1.100:8080/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build();

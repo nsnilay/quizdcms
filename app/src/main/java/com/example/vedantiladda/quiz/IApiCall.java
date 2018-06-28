@@ -3,8 +3,10 @@ package com.example.vedantiladda.quiz;
 
 import com.example.vedantiladda.quiz.dto.ContestDTO;
 //import com.example.vedantiladda.quiz.model.StaticContest;
+import com.example.vedantiladda.quiz.dto.ContestQuestionDTO;
 import com.example.vedantiladda.quiz.dto.ContestwiseDTO;
 import com.example.vedantiladda.quiz.dto.OverallDTO;
+import com.example.vedantiladda.quiz.dto.ScreenDTO;
 import com.example.vedantiladda.quiz.dto.UrlDTO;
 import com.example.vedantiladda.quiz.dto.UserDTO;
 
@@ -23,6 +25,10 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface IApiCall {
+
+    @POST("/contestQuestion/addQuestions")
+    Call<Boolean> addQuestions(@Body List<ContestQuestionDTO> contestQuestionDTOList);
+
     @GET("/contest/getContestsByType/{contestType}")
     Call<List<ContestDTO>> getAllStaticContests(@Path("contestType") String contestType);
 
@@ -38,8 +44,8 @@ public interface IApiCall {
     @GET("/userPoints/contest/getContestWiseLeaderBoard/{contestId}")
     Call<List<ContestwiseDTO>> getContestwisePoints(@Path("contestId") String contestId);
 
-    @POST("createContest")
-    Call<Boolean> addContest(@Body Contest contest);
+    @POST("/contest/createContest")
+    Call<ContestDTO> addContest(@Body Contest contest);
 
     @GET("category/getAll")
     Call<List<Category>> getCategories();
@@ -67,5 +73,11 @@ public interface IApiCall {
 
     @POST("/crawler/crawl/")
     Call<Boolean> crawl(@Body UrlDTO urlDTO);
+
+    @POST("question/saveScreened/")
+    Call<Boolean>saveScreened(@Body List<ScreenDTO> screenDTOList);
+
+    @POST("/contest/setRules")
+    Call<ContestRulesDTO> addRules(@Body ContestRulesDTO contestRulesDTO);
 
 }

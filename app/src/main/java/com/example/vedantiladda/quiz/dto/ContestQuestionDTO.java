@@ -1,7 +1,5 @@
 package com.example.vedantiladda.quiz.dto;
 
-//import com.constest.ContestAPI.entity.ContestEntity;
-
 public class ContestQuestionDTO {
     private ContestDTO contestDTO;
     private String questionId;
@@ -10,26 +8,22 @@ public class ContestQuestionDTO {
     private Integer sequence;
     private Boolean visible;
     private String contestQuestionId;
+    private QuestionDTO questionDTO;
+    private UserAnswerDTO userAnswerDTO;
 
-
-    public Boolean getVisible() {
-        return visible;
-    }
-
-    public void setVisible(Boolean visible) {
-        this.visible = visible;
-    }
 
     @Override
     public String toString() {
         return "ContestQuestionDTO{" +
-                "contestEntity=" + contestDTO +
+                "contestDTO=" + contestDTO +
                 ", questionId='" + questionId + '\'' +
                 ", points=" + points +
                 ", visibleTime=" + visibleTime +
                 ", sequence=" + sequence +
                 ", visible=" + visible +
                 ", contestQuestionId='" + contestQuestionId + '\'' +
+                ", questionDTO=" + questionDTO +
+                ", userAnswerDTO=" + userAnswerDTO +
                 '}';
     }
 
@@ -81,4 +75,29 @@ public class ContestQuestionDTO {
     public void setContestQuestionId(String contestQuestionId) {
         this.contestQuestionId = contestQuestionId;
     }
+
+    public QuestionDTO getQuestionDTO() {
+        return questionDTO;
+    }
+
+    public void setQuestionDTO(QuestionDTO questionDTO) {
+        this.questionDTO = questionDTO;
+    }
+
+    public UserAnswerDTO getUserAnswerDTO() {
+        return userAnswerDTO;
+    }
+
+    public void setUserAnswerDTO(UserAnswerDTO userAnswerDTO) {
+        this.userAnswerDTO = userAnswerDTO;
+    }
+
+    public Boolean getVisible() {
+        return visible;
+    }
+
+    public void setVisible(Boolean visible) {
+        this.visible = visible;
+    }
+
 }

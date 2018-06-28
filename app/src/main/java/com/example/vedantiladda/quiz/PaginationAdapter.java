@@ -42,7 +42,7 @@ public class PaginationAdapter extends RecyclerView.Adapter<PaginationAdapter.Qu
         final QuestionDTO questionDTO = questionDTOList.get(i);
 
         questionHolder.questionType.setText(questionDTO.getQuestionType());
-        questionHolder.questionContent.setText(questionDTO.getQuestionContent());
+        questionHolder.questionContent.setText(questionDTO.getQuestionText());
         final String id = questionDTO.getQuestionId();
         questionHolder.select.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

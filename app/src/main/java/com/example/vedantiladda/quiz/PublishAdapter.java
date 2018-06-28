@@ -32,7 +32,7 @@ public class PublishAdapter extends RecyclerView.Adapter<PublishAdapter.Question
         final QuestionDTO questionDTO = questionDTOList.get(i);
 
         questionHolder.questionType.setText(questionDTO.getQuestionType());
-        questionHolder.questionContent.setText(questionDTO.getQuestionContent());
+        questionHolder.questionContent.setText(questionDTO.getQuestionText());
         questionHolder.questionDifficulty.setText(questionDTO.getDifficulty());
 
     }

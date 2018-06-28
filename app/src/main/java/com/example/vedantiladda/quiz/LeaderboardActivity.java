@@ -48,7 +48,7 @@ public class LeaderboardActivity extends AppCompatActivity implements Leaderboar
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.Adapter mAdapter1;
     private RecyclerView.LayoutManager mLayoutManager;
-    private static String url = "http://10.177.2.149:8080";
+    private static String url = "http://10.177.2.201:8080";
     private List<UserDTO> userDTOS = new ArrayList<>();
     private List<ContestDTO> contestDTOS = new ArrayList<>();
     private List<String> staticContestList = new ArrayList<>();
@@ -106,16 +106,16 @@ public class LeaderboardActivity extends AppCompatActivity implements Leaderboar
 
 
 
-        final ImageView Back = (ImageView) findViewById(R.id.back);
-        Back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(LeaderboardActivity.this,Navigation_Activity.class);
-                startActivity(i);
-                finish();
-
-            }
-        });
+//        final ImageView Back = (ImageView) findViewById(R.id.back);
+//        Back.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent i = new Intent(LeaderboardActivity.this,Navigation_Activity.class);
+//                startActivity(i);
+//                finish();
+//
+//            }
+//        });
 
 
     }

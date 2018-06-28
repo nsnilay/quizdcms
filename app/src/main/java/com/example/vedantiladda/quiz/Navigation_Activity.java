@@ -201,16 +201,20 @@ public class Navigation_Activity extends AppCompatActivity
         } else if (id == R.id.nav_leaderboard) {
             Intent intent = new Intent(this, LeaderboardActivity.class);
             startActivity(intent);
-            finish();
+            //finish();
 
         } else if (id == R.id.nav_report) {
 
         }else if (id == R.id.nav_set_rules) {
+            Intent intent = new Intent(this, ContestRulesActivity.class);
+            startActivity(intent);
 
         }else if (id == R.id.nav_logout) {
             SharedPreferences sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.remove("userName");
+            editor.remove("Role");
+
             editor.commit();
 
             Toast.makeText(getApplicationContext(),"Succesfully logged out!",Toast.LENGTH_SHORT).show();

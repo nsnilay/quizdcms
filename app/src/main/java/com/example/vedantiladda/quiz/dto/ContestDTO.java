@@ -1,7 +1,10 @@
 package com.example.vedantiladda.quiz.dto;
 
+import java.io.Serializable;
 import java.util.List;
-public class ContestDTO {
+
+public class ContestDTO implements Serializable {
+
     private String contestId;
     private String contestName;
     private String contestType;
@@ -14,57 +17,10 @@ public class ContestDTO {
     private String categoryName;
     private String email;
     private Integer numberOfQuestions;
+    private Integer numberOfQUestions;
     private List<ContestQuestionDTO> contestQuestionDTOList;
 
 
-    public List<ContestQuestionDTO> getContestQuestionDTOList() {
-        return contestQuestionDTOList;
-    }
-
-    public void setContestQuestionDTOList(List<ContestQuestionDTO> contestQuestionDTOList) {
-        this.contestQuestionDTOList = contestQuestionDTOList;
-    }
-
-    public Integer getNumberOfQuestions() {
-        return numberOfQuestions;
-    }
-
-    public void setNumberOfQuestions(Integer numberOfQuestions) {
-        this.numberOfQuestions = numberOfQuestions;
-    }
-
-    @Override
-    public String toString() {
-        return "ContestDTO{" +
-                "contestId='" + contestId + '\'' +
-                ", contestName='" + contestName + '\'' +
-                ", contestType='" + contestType + '\'' +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
-                ", categoryId='" + categoryId + '\'' +
-                ", adminId='" + adminId + '\'' +
-                ", questionVisibilityDuration=" + questionVisibilityDuration +
-                ", bonus=" + bonus +
-                ", categoryName='" + categoryName + '\'' +
-                ", email='" + email + '\'' +
-                '}';
-    }
-
-    public String getCategoryName() {
-        return categoryName;
-    }
-
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public String getContestId() {
         return contestId;
@@ -136,5 +92,74 @@ public class ContestDTO {
 
     public void setBonus(Integer bonus) {
         this.bonus = bonus;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Integer getNumberOfQuestions() {
+        return numberOfQuestions;
+    }
+
+    public void setNumberOfQuestions(Integer numberOfQuestions) {
+        this.numberOfQuestions = numberOfQuestions;
+    }
+
+    public void setNumberOfQuestions(int numberOfQuestions) {
+        this.numberOfQuestions = numberOfQuestions;
+    }
+
+    public void setQuestionVisibilityDuration(int questionVisibilityDuration) {
+        this.questionVisibilityDuration = questionVisibilityDuration;
+    }
+
+
+    public Integer getNumberOfQUestions() {
+        return numberOfQUestions;
+    }
+
+    public void setNumberOfQUestions(Integer numberOfQUestions) {
+        this.numberOfQUestions = numberOfQUestions;
+    }
+
+    public List<ContestQuestionDTO> getContestQuestionDTOList() {
+        return contestQuestionDTOList;
+    }
+
+    public void setContestQuestionDTOList(List<ContestQuestionDTO> contestQuestionDTOList) {
+        this.contestQuestionDTOList = contestQuestionDTOList;
+    }
+
+    @Override
+    public String toString() {
+        return "ContestDTO{" +
+                "contestId='" + contestId + '\'' +
+                ", contestName='" + contestName + '\'' +
+                ", contestType='" + contestType + '\'' +
+                ", startDate='" + startDate + '\'' +
+                ", endDate='" + endDate + '\'' +
+                ", categoryId='" + categoryId + '\'' +
+                ", adminId='" + adminId + '\'' +
+                ", questionVisibilityDuration=" + questionVisibilityDuration +
+                ", bonus=" + bonus +
+                ", categoryName='" + categoryName + '\'' +
+                ", email='" + email + '\'' +
+                ", numberOfQuestions=" + numberOfQuestions +
+                ", numberOfQUestions=" + numberOfQUestions +
+                ", contestQuestionDTOList=" + contestQuestionDTOList +
+                '}';
     }
 }

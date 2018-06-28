@@ -274,7 +274,7 @@ public class ContestCreationActivity extends AppCompatActivity {
                     intent.putExtra("ContestType",contestTypeSpinner.getSelectedItem().toString());
                     intent.putExtra("Contest_CategoryId",categoryListMap.get(selectCategoryButton.getText().toString()));
                     try {
-                        intent.putExtra("ContestObject",(Serializable) intiContest());
+                        intent.putExtra("Contest",(Serializable) intiContest());
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }

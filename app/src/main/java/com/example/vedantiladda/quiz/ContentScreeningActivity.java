@@ -1,5 +1,6 @@
 package com.example.vedantiladda.quiz;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.vedantiladda.quiz.dto.QuestionDTO;
+import com.example.vedantiladda.quiz.dto.ScreenDTO;
 import com.example.vedantiladda.quiz.utils.EndlessRecyclerViewScrollListener;
 
 import java.util.ArrayList;
@@ -26,12 +28,14 @@ public class ContentScreeningActivity extends AppCompatActivity implements Conte
 
     List<QuestionDTO> questionList= new ArrayList<>();
     List<QuestionDTO> selected = new ArrayList<>();
+    List<QuestionDTO> rejected = new ArrayList<>();
+    List<ScreenDTO> screenList = new ArrayList<>();
     ContentAdapter adapter;
     LinearLayoutManager linearLayoutManager;
     RecyclerView rv;
     OkHttpClient client = new OkHttpClient.Builder().build();
     final Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http://10.177.2.15:8080/")
+            .baseUrl("http://10.177.1.100:8080/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build();
@@ -42,9 +46,10 @@ public class ContentScreeningActivity extends AppCompatActivity implements Conte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_content_screening);
-        rv = findViewById(R.id.contentRecycler);
+
         adapter = new ContentAdapter(questionList, this);
         linearLayoutManager = new LinearLayoutManager(ContentScreeningActivity.this);
+        rv = findViewById(R.id.contentRecycler);
         rv.setLayoutManager(linearLayoutManager);
         rv.setAdapter(adapter);
         loadFirstPage();
@@ -55,20 +60,48 @@ public class ContentScreeningActivity extends AppCompatActivity implements Conte
             }
         });
 
-        Button submit = findViewById(R.id.send);
-        submit.setOnClickListener(new View.OnClickListener() {
+        Button approveButton = findViewById(R.id.approvebutton);
+        approveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                for(QuestionDTO question:selected){
+                    ScreenDTO screen = new ScreenDTO();
+                    screen.setId(question.getQuestionId());
+                    screen.setStatus("approved");
+                    screenList.add(screen);
+                }
+                Log.d("Screen", screenList.toString());
                 saveAll();
+                screenList.clear();
+                Intent i = new Intent(ContentScreeningActivity.this, ContentScreeningActivity.class);
+                startActivity(i);
             }
         });
+        Button rejectButton = findViewById(R.id.rejectButton);
+        rejectButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for(QuestionDTO question:selected){
+                    ScreenDTO screen = new ScreenDTO();
+                    screen.setId(question.getQuestionId());
+                    screen.setStatus("reject");
+                    screenList.add(screen);
+                }
+                Log.d("Reject", screenList.toString());
+                saveAll();
+                screenList.clear();
+                Intent i = new Intent(ContentScreeningActivity.this, ContentScreeningActivity.class);
+                startActivity(i);
+            }
+        });
+
 
 
     }
 
     public void saveAll(){
         IApiCall iApiCall = retrofit.create(IApiCall.class);
-        final Call<Boolean> saveAllCall = iApiCall.saveAll(selected);
+        final Call<Boolean> saveAllCall = iApiCall.saveScreened(screenList);
 
 
         saveAllCall.enqueue(new Callback<Boolean>() {
@@ -98,7 +131,7 @@ public class ContentScreeningActivity extends AppCompatActivity implements Conte
 
 
                 questionList.addAll(response.body());
-                Log.e("ContentScreening", questionList.toString());
+                Log.e("ContentScreening", questionList.get(0).toString());
                 adapter.notifyDataSetChanged();
 
                 Toast.makeText(ContentScreeningActivity.this, "success", Toast.LENGTH_LONG).show();
@@ -144,21 +177,17 @@ public class ContentScreeningActivity extends AppCompatActivity implements Conte
     }
 
     @Override
-    public void onSetSwitch(String id) {
+    public void onApprove(String id, Boolean status) {
         for(QuestionDTO question: questionList){
-            if(question.getQuestionId() == id){
+            if(question.getQuestionId() == id && status){
                 selected.add(question);
             }
-        }
-
-    }
-
-    @Override
-    public void onReleaseSwitch(String id) {
-        for(QuestionDTO question: questionList){
-            if(question.getQuestionId() == id){
+            if(question.getQuestionId() == id && !status){
                 selected.remove(question);
             }
+
         }
+
     }
+
 }

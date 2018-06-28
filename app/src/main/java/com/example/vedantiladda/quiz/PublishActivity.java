@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.vedantiladda.quiz.dto.Contest;
+import com.example.vedantiladda.quiz.dto.ContestDTO;
 import com.example.vedantiladda.quiz.dto.ContestQuestionDTO;
 import com.example.vedantiladda.quiz.dto.ContestRulesDTO;
 import com.example.vedantiladda.quiz.dto.QuestionDTO;
@@ -29,7 +30,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PublishActivity extends AppCompatActivity {
-
+    List<ContestQuestionDTO> contestQuestionDTOList = new ArrayList<>();
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -43,11 +44,13 @@ public class PublishActivity extends AppCompatActivity {
             .client(client)
             .build();
     final Retrofit retrofit2 = new Retrofit.Builder().
-    baseUrl(getString(R.string.contest_create_base_url))
+    baseUrl("http://10.177.2.201:8080/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
          .build();
     ContestRulesDTO rules = new ContestRulesDTO();
+    Boolean rulesFailure = false;
+    ContestDTO actualContest = new ContestDTO();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,9 +61,8 @@ public class PublishActivity extends AppCompatActivity {
         Intent publish = getIntent();
         final Contest contest = (Contest)publish.getSerializableExtra("Contest");
         questionDTOList = (List<QuestionDTO>) publish.getSerializableExtra("questions");
-        copy = (List<QuestionDTO>) publish.getSerializableExtra("questions");
-        Log.d("check", questionDTOList.toString());
-        mAdapter = new PublishAdapter(copy);
+        Log.d("check", contest.toString());
+        mAdapter = new PublishAdapter(questionDTOList);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
         SharedPreferences sharedRules = getBaseContext().getSharedPreferences("rules",0);
@@ -73,7 +75,8 @@ public class PublishActivity extends AppCompatActivity {
             public void onResponse(Call<ContestRulesDTO> call, Response<ContestRulesDTO> response) {
                 Log.d("PUBLISH", call.request().url().toString());
                 rules = response.body();
-                valid = checkRules(copy);
+                valid = checkRules(questionDTOList);
+                rulesFailure=true;
                 Toast.makeText(PublishActivity.this, "success", Toast.LENGTH_LONG).show();
             }
 
@@ -92,18 +95,23 @@ public class PublishActivity extends AppCompatActivity {
 
                 if(valid){
                     criteria.setText("Question selection is valid");
-                    Toast.makeText(PublishActivity.this, "yay!", Toast.LENGTH_LONG).show();
-                    addQuestionsToContest(contest,copy);
+                    Toast.makeText(PublishActivity.this, "Question selection is valid", Toast.LENGTH_LONG).show();
+                    Log.d("PUBLISHACTIVITY",questionDTOList.toString());
+                    Log.d("CONTEST", contestQuestionDTOList.toString());
                     postQuestion(contest);
+                    Intent i = new Intent(PublishActivity.this, Navigation_Activity.class);
+                    startActivity(i);
                 }
                 else{
-                    criteria.setText("Must have "+ rules.getNumQuestions().toString()+ " questions with: "+ "\n"
-                            +rules.getNumEasyQ().toString()+" easy "+
-                            rules.getNumMediumQ().toString() + " medium "+rules.getNumHardQ().toString()
-                            +" hard questions "+ "\n" +rules.getNumTextQ().toString()+" text "+
-                            rules.getNumAudioQ().toString()
-                            +" audio " +rules.getNumImageQ().toString()+" image and "+rules.getNumVideoQ().toString()
-                            +" video questions.");
+                    if(rulesFailure) {
+                        criteria.setText("Must have " + rules.getNumQuestions().toString() + " questions with: " + "\n"
+                                + rules.getNumEasyQ().toString() + " easy " +
+                                rules.getNumMediumQ().toString() + " medium " + rules.getNumHardQ().toString()
+                                + " hard questions " + "\n" + rules.getNumTextQ().toString() + " text " +
+                                rules.getNumAudioQ().toString()
+                                + " audio " + rules.getNumImageQ().toString() + " image and " + rules.getNumVideoQ().toString()
+                                + " video questions.");
+                    }
                 }
             }
         });
@@ -112,29 +120,68 @@ public class PublishActivity extends AppCompatActivity {
     }
 
     public void addQuestionsToContest(Contest contest, List<QuestionDTO> questionDTOList){
-        List<ContestQuestionDTO> contestQuestionDTOList = new ArrayList<>();
+
+        int i=1;
         for (QuestionDTO question: questionDTOList){
             ContestQuestionDTO contestQuestionDTO = new ContestQuestionDTO();
-            contestQuestionDTO.setContestQuestionId(question.getQuestionId());
+            contestQuestionDTO.setQuestionId(question.getQuestionId());
+            if(question.getDifficulty().equals("easy"))
+                contestQuestionDTO.setPoints(1);
+            if(question.getDifficulty().equals("hard"))
+                contestQuestionDTO.setPoints(3);
+            if(question.getDifficulty().equals("medium"))
+                contestQuestionDTO.setPoints(2);
+            contestQuestionDTO.setVisible(true);
+            contestQuestionDTO.setVisibleTime(30);
+            Log.d("FINAL CHECK", contestQuestionDTO.getQuestionId().toString());
+            contestQuestionDTO.setSequence(i);
+            i++;
+            contestQuestionDTO.setContestDTO(actualContest);
             contestQuestionDTOList.add(contestQuestionDTO);
         }
         contest.setContestQuestionDTOList(contestQuestionDTOList);
+
+        addQuestions(contestQuestionDTOList);
     }
 
-    public void postQuestion(Contest contest){
-        IApiCall iApiCall = retrofit.create(IApiCall.class);
+    public void addQuestions(List<ContestQuestionDTO> contestQuestionDTOList){
+        IApiCall iApiCall = retrofit2.create(IApiCall.class);
         Call<Boolean> createCall = null;
-        createCall = iApiCall.addContest(contest);
+        createCall = iApiCall.addQuestions(contestQuestionDTOList);
         createCall.enqueue(new Callback<Boolean>() {
             @Override
             public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-                Toast.makeText(PublishActivity.this, "Done" , Toast.LENGTH_LONG).show();
-
+                Toast.makeText(PublishActivity.this, "Questions added" , Toast.LENGTH_LONG).show();
 
             }
 
             @Override
             public void onFailure(Call<Boolean> call, Throwable t) {
+                Toast.makeText(PublishActivity.this, "Failed!!" , Toast.LENGTH_LONG).show();
+
+
+            }
+        });
+    }
+
+    public void postQuestion(final Contest contest){
+        IApiCall iApiCall = retrofit2.create(IApiCall.class);
+        Call<ContestDTO> createCall = null;
+        createCall = iApiCall.addContest(contest);
+        createCall.enqueue(new Callback<ContestDTO>() {
+            @Override
+            public void onResponse(Call<ContestDTO> call, Response<ContestDTO> response) {
+                Toast.makeText(PublishActivity.this, "Done" , Toast.LENGTH_LONG).show();
+
+                actualContest = response.body();
+                contest.setContestId(actualContest.getContestId());
+                addQuestionsToContest(contest,questionDTOList);
+
+
+            }
+
+            @Override
+            public void onFailure(Call<ContestDTO> call, Throwable t) {
                 Toast.makeText(PublishActivity.this, "Please try after some time" , Toast.LENGTH_LONG).show();
 
 
