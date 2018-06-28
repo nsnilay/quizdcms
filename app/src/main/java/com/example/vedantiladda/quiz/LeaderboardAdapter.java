@@ -8,17 +8,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.vedantiladda.quiz.dto.OverallDTO;
 import com.example.vedantiladda.quiz.dto.UserDTO;
 
 import java.util.List;
 
 public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.LeaderboardHolder> {
 
-    private List<UserDTO> users;
+    //private List<UserDTO> users;
+    private List<OverallDTO> overallDTOS;
     private LeaderboardAdapter.LeaderboardCommunicator communicator;
 
-    public LeaderboardAdapter(List<UserDTO> users, LeaderboardAdapter.LeaderboardCommunicator communicator) {
-        this.users = users;
+    public LeaderboardAdapter(List<OverallDTO> overallDTOS, LeaderboardAdapter.LeaderboardCommunicator communicator) {
+        this.overallDTOS = overallDTOS;
         this.communicator = communicator;
     }
 
@@ -32,13 +34,16 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull final LeaderboardAdapter.LeaderboardHolder holder, int position) {
-        final UserDTO userDTO = users.get(position);
-        holder.username.setText(userDTO.getUserName());
+        final OverallDTO overallDTO = overallDTOS.get(position);
+        holder.username.setText(overallDTO.getUserId());
+        holder.points.setText(String.valueOf(overallDTO.getOverAllPoints()));
+        holder.rank.setText(String.valueOf(overallDTO.getRank()))
+        ;
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UserDTO userDTO = users.get(holder.getAdapterPosition());
-                String id = userDTO.getUserId();
+                OverallDTO overallDTO1 = overallDTOS.get(holder.getAdapterPosition());
+                String id = overallDTO1.getUserId();
                 communicator.onClickTextView(id);
             }
         });
@@ -47,17 +52,21 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
 
     @Override
     public int getItemCount() {
-        return users.size();
+        return overallDTOS.size();
     }
 
     public class LeaderboardHolder extends RecyclerView.ViewHolder{
         public ConstraintLayout constraintLayout;
         public TextView username;
+        public TextView points;
+        public TextView rank;
 
         public LeaderboardHolder(View itemView) {
             super(itemView);
             constraintLayout = itemView.findViewById(R.id.lConstarintLayout);
             username = itemView.findViewById(R.id.UserName);
+            points = itemView.findViewById(R.id.Points);
+            rank = itemView.findViewById(R.id.Rank);
         }
     }
 
