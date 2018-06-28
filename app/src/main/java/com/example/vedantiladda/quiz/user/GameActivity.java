@@ -220,7 +220,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 questionText.setText(questionDTO.getQuestionText());
                 optionOne.setText("A: " + questionDTO.getOptionOne());
                 optionTwo.setText("B: " + questionDTO.getOptionTwo());
-                optionThree.setText("C: " + questionDTO.getOptionThree());
+                optionThree.setText("C: " +   questionDTO.getOptionThree());
                 optionFour.setText("D: " + questionDTO.getOptionFour());
 
                 break;
