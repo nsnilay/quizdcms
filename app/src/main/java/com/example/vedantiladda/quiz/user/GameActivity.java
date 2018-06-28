@@ -1,7 +1,9 @@
 package com.example.vedantiladda.quiz.user;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -30,6 +32,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.example.vedantiladda.quiz.LeaderboardActivity;
+import com.example.vedantiladda.quiz.LeaderboardAdapter;
 import com.example.vedantiladda.quiz.R;
 import com.example.vedantiladda.quiz.dto.CategoryDTO;
 import com.example.vedantiladda.quiz.dto.ContestDTO;
@@ -99,8 +103,11 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         setAllViews();
         requestPermissions();
 
-//        contestDTO = (ContestDTO)getIntent().getSerializableExtra("contestDTO");
-//        contestId = contestDTO.getContestId();
+        contestDTO = (ContestDTO)getIntent().getSerializableExtra("contestDTO");
+        contestId = contestDTO.getContestId();
+
+        SharedPreferences sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
+        testUserId = sharedPreferences.getString("userId", " ");
 
         client = new OkHttpClient.Builder().build();
         retrofit = new Retrofit.Builder()
@@ -109,8 +116,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 .client(client)
                 .build();
 
-    //    contestDTO = (ContestDTO) getIntent().getSerializableExtra("contestDTO");
-
+        contestDTO = (ContestDTO) getIntent().getSerializableExtra("contestDTO");
+        contestId = contestDTO.getContestId();
         contestQuestionDTOList = new ArrayList<>();
         contestDTO = new ContestDTO();
         contestQuestionDTOList = getAllQuestionsByContest(contestId, false);//contestDTO.getContestId());
@@ -131,6 +138,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         questionText.setMovementMethod(new ScrollingMovementMethod());
         skipCountText = findViewById(R.id.skip_count_text);
         questionNumberText = findViewById(R.id.question_number);
+        questionNumberText.setVisibility(View.GONE);
 
         videoView = findViewById(R.id.video);
         imageView = findViewById(R.id.image);
@@ -206,6 +214,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(GameActivity.this,"No more questions", Toast.LENGTH_SHORT).show();
             linearLayout.setVisibility(View.GONE);
             sequenceText.setVisibility(View.GONE);
+//            skipQuestionFab.setVisibility(View.INVISIBLE);
             finishButton.setVisibility(View.VISIBLE);
             return;
         }
@@ -333,8 +342,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                             and then after successful api call find eligible question
 
                  */
-//                imageView.setVisibility(View.INVISIBLE);
-//                linearLayout.setVisibility(View.INVISIBLE);
+                imageView.setVisibility(View.INVISIBLE);
+                linearLayout.setVisibility(View.INVISIBLE);
+                questionText.setVisibility(View.INVISIBLE);
                 UserAnswerDTO userAnswerDTO = new UserAnswerDTO();
 //                userAnswerDTO.getContestQuestionDTO().setContestQuestionId(globalContestQuestionDTO.getContestQuestionId());
                 userAnswerDTO.setContestQuestionDTO(globalContestQuestionDTO);
@@ -370,8 +380,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.skip_question_button :
-//                imageView.setVisibility(View.INVISIBLE);
-//                linearLayout.setVisibility(View.INVISIBLE);
+                imageView.setVisibility(View.INVISIBLE);
+                linearLayout.setVisibility(View.INVISIBLE);
+                questionText.setVisibility(View.INVISIBLE);
 
                 if(skipCount == 2){
                     Toast.makeText(GameActivity.this,"Skips over",Toast.LENGTH_SHORT).show();
@@ -398,7 +409,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                                     public void onResponse(Call<Boolean> call, Response<Boolean> response) {
 
                                         Log.d(TAG, response.body().toString());
-//                                        getAllQuestionsByContest(MycontestId, true);
+                                        getAllQuestionsByContest(contestId, true);
                                     }
 
                                     @Override
@@ -446,13 +457,33 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.begin_button:
                 beginButton.setVisibility(View.GONE);
-                Toast.makeText(GameActivity.this,contestQuestionDTOList.toString(),Toast.LENGTH_SHORT).show();
                 findEligibleQuestion();
 //                displayVideo();
                 break;
 
             case R.id.finish_button:
-                startActivity(new Intent(GameActivity.this,UserMain.class));
+
+                SharedPreferences sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
+                String userId = sharedPreferences.getString("userId", " ");
+                UserApiCall callLeaderboard = retrofit.create(UserApiCall.class);
+                Call<Boolean> call = callLeaderboard.callLeaderboard(contestId, userId);
+
+                call.enqueue(new Callback<Boolean>() {
+                    @Override
+                    public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                        Log.d("LEADERBOARD", "Ban gaya leaderboard.. aisa server kehta h");
+                    }
+
+                    @Override
+                    public void onFailure(Call<Boolean> call, Throwable t) {
+                        Log.d("LEADERBOARDERROR", "error in leaderboard.. aisa server kehta h");
+
+
+                    }
+                });
+                startActivity(new Intent(GameActivity.this,LeaderboardActivity.class));
+                finish();
+
         }
     }
 

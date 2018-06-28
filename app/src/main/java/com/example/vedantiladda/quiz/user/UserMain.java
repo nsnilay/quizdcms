@@ -1,5 +1,8 @@
 package com.example.vedantiladda.quiz.user;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -11,8 +14,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.example.vedantiladda.quiz.LeaderboardActivity;
+import com.example.vedantiladda.quiz.Navigation_Activity;
 import com.example.vedantiladda.quiz.R;
+import com.example.vedantiladda.quiz.login.LoginActivity;
 import com.example.vedantiladda.quiz.user.Leaderboard;
 import com.example.vedantiladda.quiz.user.UserContests;
 
@@ -95,8 +102,20 @@ public class UserMain extends AppCompatActivity
                 fragment = new UserDynamicContests();
                 break;
             case R.id.nav_leaderboard:
-                fragment = new Leaderboard();
+                startActivity(new Intent(UserMain.this,LeaderboardActivity.class));
                 break;
+            case R.id.user_logout:
+                SharedPreferences sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.remove("userName");
+                editor.remove("Role");
+                editor.commit();
+                Toast.makeText(getApplicationContext(),"Succesfully logged out!",Toast.LENGTH_SHORT).show();
+
+                //Put the updated launcher activity here
+                Intent intent = new Intent(UserMain.this,LoginActivity.class);
+                startActivity(intent);
+                finish();
         }
 
         //replacing the fragment

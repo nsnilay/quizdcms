@@ -1,0 +1,103 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml:2:1-21:12
+INJECTED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml:2:1-21:12
+INJECTED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml:2:1-21:12
+INJECTED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml:2:1-21:12
+MERGED from [com.android.support:appcompat-v7:27.1.1] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/34af1424d359dc3179cfd4e9f3e44851/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support.constraint:constraint-layout:1.1.2] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.2.aar/ed643f003862ff6886bbb30291356611/AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:support-fragment:27.1.1] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.1.aar/ef599660b8320ab6a7dca8828cac6238/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.1.1.aar/8618e546273cdaa90f71cf26e8fd42a7/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:27.1.1] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.1.aar/75b4b0bced7221fc1eb163b7f71900c4/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:27.1.1] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.1.aar/c5f3a24687602d152251d3e472aba6a8/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:27.1.1] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-27.1.1.aar/b3a475732dd04907a66ac5fcad5c0b04/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:27.1.1] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/4ccb8e3b6c51a4985acb8e0ae1f32c0d/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/23098e48e74335da4cfd529cb3c7747f/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/e6927345ec6783a0afe29394d1920ba1/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:runtime:1.1.0] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/105681c8a8cfc9ffdbc5b9fcb63fb38a/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.0] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/1d10d1812f6c4217d4dbbab5fa1b3073/AndroidManifest.xml:17:1-22:12
+INJECTED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml:2:1-21:12
+INJECTED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml:2:1-21:12
+INJECTED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml:2:1-21:12
+	package
+		ADDED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml:3:5-52
+		INJECTED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml
+		ADDED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml:2:1-21:12
+		INJECTED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml
+		ADDED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml:2:1-21:12
+		INJECTED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml:2:11-69
+application
+ADDED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml:5:5-19:19
+MERGED from [com.android.support.constraint:constraint-layout:1.1.2] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.2.aar/ed643f003862ff6886bbb30291356611/AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.2] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.2.aar/ed643f003862ff6886bbb30291356611/AndroidManifest.xml:9:5-20
+	android:supportsRtl
+		ADDED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml:10:9-35
+	android:label
+		ADDED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml:8:9-41
+	android:roundIcon
+		ADDED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml:9:9-54
+	android:icon
+		ADDED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml:7:9-43
+	android:allowBackup
+		ADDED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml:6:9-35
+	android:theme
+		ADDED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml:11:9-40
+activity#com.example.nilayshrivastava.quizdcms.MainActivity
+ADDED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml:12:9-18:20
+	android:name
+		ADDED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml:12:19-47
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml:13:13-17:29
+action#android.intent.action.MAIN
+ADDED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml:14:17-69
+	android:name
+		ADDED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml:14:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml:16:17-77
+	android:name
+		ADDED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml:16:27-74
+uses-sdk
+INJECTED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml
+INJECTED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml
+MERGED from [com.android.support:appcompat-v7:27.1.1] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/34af1424d359dc3179cfd4e9f3e44851/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:27.1.1] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/34af1424d359dc3179cfd4e9f3e44851/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support.constraint:constraint-layout:1.1.2] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.2.aar/ed643f003862ff6886bbb30291356611/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.1.2] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.2.aar/ed643f003862ff6886bbb30291356611/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:support-fragment:27.1.1] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.1.aar/ef599660b8320ab6a7dca8828cac6238/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.1.1] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.1.aar/ef599660b8320ab6a7dca8828cac6238/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.1.1.aar/8618e546273cdaa90f71cf26e8fd42a7/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.1.1.aar/8618e546273cdaa90f71cf26e8fd42a7/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.1] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.1.aar/75b4b0bced7221fc1eb163b7f71900c4/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.1] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.1.aar/75b4b0bced7221fc1eb163b7f71900c4/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.1] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.1.aar/c5f3a24687602d152251d3e472aba6a8/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.1] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.1.aar/c5f3a24687602d152251d3e472aba6a8/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.1.1] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-27.1.1.aar/b3a475732dd04907a66ac5fcad5c0b04/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.1.1] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-27.1.1.aar/b3a475732dd04907a66ac5fcad5c0b04/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.1] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/4ccb8e3b6c51a4985acb8e0ae1f32c0d/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.1] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/4ccb8e3b6c51a4985acb8e0ae1f32c0d/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/23098e48e74335da4cfd529cb3c7747f/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/23098e48e74335da4cfd529cb3c7747f/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/e6927345ec6783a0afe29394d1920ba1/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/e6927345ec6783a0afe29394d1920ba1/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/105681c8a8cfc9ffdbc5b9fcb63fb38a/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/105681c8a8cfc9ffdbc5b9fcb63fb38a/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/1d10d1812f6c4217d4dbbab5fa1b3073/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] /Users/rohitgubrele/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/1d10d1812f6c4217d4dbbab5fa1b3073/AndroidManifest.xml:20:5-44
+INJECTED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml
+INJECTED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml
+		ADDED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml
+		ADDED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/rohitgubrele/Documents/GitHub/quizdcms/QuizDCMS/app/src/main/AndroidManifest.xml

@@ -39,7 +39,8 @@
         android:layout_height="160dp"
         android:id="@+id/image"
         android:layout_alignParentTop="true"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        android:background="@drawable/ic_menu_send"/>
 
 
     <TextView

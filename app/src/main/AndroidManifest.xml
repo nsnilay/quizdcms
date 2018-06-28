@@ -2,8 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.vedantiladda.quiz">
 
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
         android:allowBackup="true"
@@ -12,13 +17,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity">
+
+
+        <activity android:name=".login.LoginActivity">
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".user.UserMain"
             android:label="@string/title_activity_user_main"
@@ -35,6 +45,17 @@
             android:name=".user.DynamicGame"
             android:label="@string/title_activity_dynamic_game"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
+
+        <activity android:name=".Navigation_Activity"/>
+        <activity android:name=".ContestRulesActivity"/>
+        <activity android:name=".CrawlActivity"/>
+        <activity android:name=".LeaderboardActivity" />
+        <activity android:name=".ContestCreationActivity"/>
+        <activity android:name=".PublishActivity" />
+        <activity android:name=".ContentScreeningActivity"/>
+        <activity android:name=".QuestionBankActivity" />
+
     </application>
 
 </manifest>

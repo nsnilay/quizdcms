@@ -1,6 +1,8 @@
 package com.example.vedantiladda.quiz.dto;
 
-public class QuestionDTO {
+import java.io.Serializable;
+
+public class QuestionDTO implements Serializable {
 
     private String questionId;
     private String categoryId;
@@ -14,6 +16,15 @@ public class QuestionDTO {
     private String optionFour;
     private String answerType;
     private String status;
+    private Boolean checked = false;
+
+    public Boolean getChecked() {
+        return checked;
+    }
+
+    public void setChecked(Boolean checked) {
+        this.checked = checked;
+    }
 
     public String getQuestionId() {
         return questionId;
