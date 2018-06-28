@@ -63,7 +63,7 @@ public class MediumFragment extends Fragment implements PaginationAdapter.Commun
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Intent contest = getActivity().getParentActivityIntent();
+        Intent contest = getActivity().getIntent();
         contestType = contest.getStringExtra("ContestType");
         category = contest.getStringExtra("Contest_CategoryId");
         View view =  inflater.inflate(R.layout.medium_tab, container, false);

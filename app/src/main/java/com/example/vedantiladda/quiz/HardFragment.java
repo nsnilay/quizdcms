@@ -69,7 +69,7 @@ public class HardFragment extends Fragment implements PaginationAdapter.Communic
         //Returning the layout file after inflating
         //Change R.layout.tab1 in you classes
         //Return the layout file after inflating
-        Intent contest = getActivity().getParentActivityIntent();
+        Intent contest = getActivity().getIntent();
         contestType = contest.getStringExtra("ContestType");
         category = contest.getStringExtra("Contest_CategoryId");
         View view =  inflater.inflate(R.layout.hard_tab, container, false);

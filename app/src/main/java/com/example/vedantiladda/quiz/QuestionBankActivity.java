@@ -25,6 +25,7 @@ public class QuestionBankActivity extends AppCompatActivity implements TabLayout
     ViewPager viewPager;
     PagerAdapter adapter;
     public List<QuestionDTO> selectedQuestionDTOS = new ArrayList<>();
+    private String contestType,category;
 
     public void setSelectedQuestionDTOS(List<QuestionDTO> selectedQuestionDTOS) {
         this.selectedQuestionDTOS.addAll(selectedQuestionDTOS);
@@ -43,6 +44,10 @@ public class QuestionBankActivity extends AppCompatActivity implements TabLayout
         //Initializing the tabLayout
         final TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout);
 
+//        Intent contest = getIntent();
+//        contestType = contest.getStringExtra("ContestType");
+//        category = contest.getStringExtra("Contest_CategoryId");
+//
         //Adding the tabs using addTab() method
         TextView easy= new TextView(this);
         easy.setText("EASY");

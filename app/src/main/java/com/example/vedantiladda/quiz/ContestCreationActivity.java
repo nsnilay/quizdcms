@@ -7,7 +7,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -30,9 +29,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import okhttp3.OkHttpClient;
@@ -41,8 +39,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import java.time.format.DateTimeFormatter;
-import java.time.LocalDateTime;
+
+import java.util.Map;
 
 public class ContestCreationActivity extends AppCompatActivity {
     private EditText contestName,startTime,duration,bonus,number_of_question;
@@ -51,9 +49,9 @@ public class ContestCreationActivity extends AppCompatActivity {
     Button selectCategoryButton;
     private Retrofit retrofit;
     private OkHttpClient client;
-    final List<String> catagoriesList = new ArrayList<>();
+    final List<String> categoriesList = new ArrayList<>();
     final Contest contest = new Contest();
-
+    final Map<String,String> categoryListMap = new HashMap<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,8 +66,8 @@ public class ContestCreationActivity extends AppCompatActivity {
     }
     public void categorySelectButtonListner()
     {
-        String popUpContents[] = new String[catagoriesList.size()];
-        catagoriesList.toArray(popUpContents);
+        String popUpContents[] = new String[categoriesList.size()];
+        categoriesList.toArray(popUpContents);
 
 
         // initialize pop up window
@@ -104,7 +102,7 @@ public class ContestCreationActivity extends AppCompatActivity {
         ListView listViewCategory = new ListView(this);
 
         // set our adapter and pass our pop up window contents
-        listViewCategory.setAdapter(CategoryAdapter(catagoriesList));
+        listViewCategory.setAdapter(CategoryAdapter(categoriesList));
 
         // set the item click listener
         listViewCategory.setOnItemClickListener(new CategoryWindowOnItemSelectListner());
@@ -128,15 +126,12 @@ public class ContestCreationActivity extends AppCompatActivity {
 
                 // setting the ID and text for every items in the list
                 String item = getItem(position);
-                String[] itemArr = item.split("::");
-                String text = itemArr[0];
-                String id = itemArr[1];
+                String text = item;
 
                 // visual settings for the list item
                 TextView listItem = new TextView(ContestCreationActivity.this);
 
                 listItem.setText(text);
-                listItem.setTag(id);
                 listItem.setTextSize(16);
                 listItem.setPadding(8, 8, 8, 8);
                 listItem.setTextColor(Color.WHITE);
@@ -176,30 +171,24 @@ public class ContestCreationActivity extends AppCompatActivity {
                     categories.addAll(response.body());
                     for(Category category : categories)
                     {
-                        catagoriesList.add(category.getCategoryName()+"::"+category.getCategoryId());
+                        categoriesList.add(category.getCategoryName());
+                        categoryListMap.put(category.getCategoryName(),category.getCategoryId());
+
                     }
-                    catagoriesList.add("tunnu::0");
+
 
                 }
 
                 @Override
                 public void onFailure(Call<List<Category>> call, Throwable t) {
                 Toast.makeText(ContestCreationActivity.this,"Fail",Toast.LENGTH_LONG).show();
-                    catagoriesList.add("shrivastav::0");
+                    categoriesList.add("Unable To Load::-1");
 
                 }
             });
 
-            return catagoriesList;
+            return categoriesList;
         }
-    private String getTag(String category)
-    {
-        for(String text : getCategortries()) {
-            if(text.split("::")[0] == category)
-                return text.split("::")[1];
-        }
-        return "Not Found";
-    }
     public void  addListnerToStartTimeET()
     {   final EditText startTime = findViewById(R.id.start_time_et);
         startTime.setOnClickListener(new View.OnClickListener() {
@@ -232,7 +221,7 @@ public class ContestCreationActivity extends AppCompatActivity {
         bonus = findViewById(R.id.bonus_et);
         number_of_question = findViewById(R.id.number_of_questions_et);
             contest.setCategoryName(selectCategoryButton.getText().toString());
-            contest.setCategoryId(getTag(selectCategoryButton.getText().toString()));
+            contest.setCategoryId(categoryListMap.get(selectCategoryButton.getText().toString()));
             contest.setContestId("01");
             contest.setAdminId("Admin");
             contest.setBonus(Integer.parseInt(bonus.getText().toString()));
@@ -282,7 +271,9 @@ public class ContestCreationActivity extends AppCompatActivity {
 
                        Intent intent = new Intent(ContestCreationActivity.this,QuestionBankActivity.class);
                        intent.putExtra("ContestType",contestTypeSpinner.getSelectedItem().toString());
-                       intent.putExtra("Contest_CategoryId",getTag(selectCategoryButton.getText().toString()));
+                       intent.putExtra("Contest_CategoryId",categoryListMap.get(selectCategoryButton.getText().toString()));
+                      // Toast.makeText(ContestCreationActivity.this,categoryListMap.get(selectCategoryButton.getText().toString()),Toast.LENGTH_LONG).show();
+                       //Toast.makeText(ContestCreationActivity.this,contestTypeSpinner.getSelectedItem().toString(),Toast.LENGTH_LONG).show();
                        startActivity(intent);
 
 

@@ -62,7 +62,7 @@ public class EasyFragment extends Fragment implements PaginationAdapter.Communic
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        Intent contest = getActivity().getParentActivityIntent();
+        Intent contest = getActivity().getIntent();
         contestType = contest.getStringExtra("ContestType");
         category = contest.getStringExtra("Contest_CategoryId");
         View view =  inflater.inflate(R.layout.easy_tab, container, false);
