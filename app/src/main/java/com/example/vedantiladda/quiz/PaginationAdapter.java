@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.example.vedantiladda.quiz.dto.QuestionDTO;
@@ -42,14 +43,25 @@ public class PaginationAdapter extends RecyclerView.Adapter<PaginationAdapter.Qu
 
         questionHolder.questionType.setText(questionDTO.getQuestionType());
         questionHolder.questionContent.setText(questionDTO.getQuestionContent());
-        questionHolder.select.setOnClickListener(new View.OnClickListener(){
+        final String id = questionDTO.getQuestionId();
+        questionHolder.select.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View view) {
-                QuestionDTO questionDTO = questionDTOList.get(i);
-                String id = questionDTO.getQuestionId();
-                communicator.onClickCheckBox(id);
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b){
+                    questionDTO.setChecked(true);
+                    questionHolder.select.setChecked(questionDTO.getChecked());
+                    communicator.onClickCheckBox(id);
+                }
+                else {
+                    questionDTO.setChecked(false);
+                    questionHolder.select.setChecked(questionDTO.getChecked());
+                    communicator.onClickCheckBox(id);
+                }
             }
         });
+        questionHolder.select.setChecked(questionDTO.getChecked());
+
+
     }
 
     @Override

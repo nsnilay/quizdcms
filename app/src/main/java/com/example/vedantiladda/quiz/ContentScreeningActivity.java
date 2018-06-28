@@ -42,7 +42,7 @@ public class ContentScreeningActivity extends AppCompatActivity implements Conte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_content_screening);
-
+        rv = findViewById(R.id.contentRecycler);
         adapter = new ContentAdapter(questionList, this);
         linearLayoutManager = new LinearLayoutManager(ContentScreeningActivity.this);
         rv.setLayoutManager(linearLayoutManager);
@@ -98,7 +98,7 @@ public class ContentScreeningActivity extends AppCompatActivity implements Conte
 
 
                 questionList.addAll(response.body());
-                Log.e("ContentScreening", questionList.get(0).toString());
+                Log.e("ContentScreening", questionList.toString());
                 adapter.notifyDataSetChanged();
 
                 Toast.makeText(ContentScreeningActivity.this, "success", Toast.LENGTH_LONG).show();

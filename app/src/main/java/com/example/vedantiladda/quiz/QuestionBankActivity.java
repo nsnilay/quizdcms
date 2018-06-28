@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.vedantiladda.quiz.dto.Contest;
 import com.example.vedantiladda.quiz.dto.QuestionDTO;
 
 import java.io.Serializable;
@@ -24,18 +25,44 @@ public class QuestionBankActivity extends AppCompatActivity implements TabLayout
 
     ViewPager viewPager;
     PagerAdapter adapter;
+    public List<QuestionDTO> easySelectedQuestionDTOS = new ArrayList<>();
+    public List<QuestionDTO> mediumSelectedQuestionDTOS = new ArrayList<>();
+    public List<QuestionDTO> hardSelectedQuestionDTOS = new ArrayList<>();
     public List<QuestionDTO> selectedQuestionDTOS = new ArrayList<>();
 
-    public void setSelectedQuestionDTOS(List<QuestionDTO> selectedQuestionDTOS) {
-        this.selectedQuestionDTOS.addAll(selectedQuestionDTOS);
+    public void setEasySelectedQuestionDTOS(List<QuestionDTO> selectedQuestionDTOS) {
+        this.easySelectedQuestionDTOS = selectedQuestionDTOS;
+    }
+
+    public void setMediumSelectedQuestionDTOS(List<QuestionDTO> selectedQuestionDTOS) {
+        this.mediumSelectedQuestionDTOS = selectedQuestionDTOS;
+    }
+
+    public void setHardSelectedQuestionDTOS(List<QuestionDTO> selectedQuestionDTOS) {
+        this.hardSelectedQuestionDTOS = selectedQuestionDTOS;
+    }
+
+    public void setSelectedList(List<QuestionDTO> one,List<QuestionDTO> two,List<QuestionDTO> three){
+        selectedQuestionDTOS.addAll(one);
+        selectedQuestionDTOS.addAll(two);
+        selectedQuestionDTOS.addAll(three);
+
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        selectedQuestionDTOS.clear();
+
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.static_question_bank);
-
-
+        selectedQuestionDTOS.clear();
+        Intent i = getIntent();
+        final Contest contest = (Contest)i.getSerializableExtra("Contest");
         //Adding toolbar to the activity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -105,9 +132,11 @@ public class QuestionBankActivity extends AppCompatActivity implements TabLayout
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                setSelectedList(hardSelectedQuestionDTOS ,mediumSelectedQuestionDTOS, easySelectedQuestionDTOS );
                 Log.d("Selected", selectedQuestionDTOS.toString());
                 Intent publish = new Intent(QuestionBankActivity.this, PublishActivity.class);
                 publish.putExtra("questions", (Serializable) selectedQuestionDTOS);
+                publish.putExtra("Contest", (Serializable)contest);
                 startActivity(publish);
             }
         });
@@ -134,16 +163,16 @@ public class QuestionBankActivity extends AppCompatActivity implements TabLayout
 
     @Override
     public void onEasyDataPass(List<QuestionDTO> selectedQuestionDTOS) {
-        setSelectedQuestionDTOS(selectedQuestionDTOS);
+        setEasySelectedQuestionDTOS(selectedQuestionDTOS);
     }
 
     @Override
     public void onHardDataPass(List<QuestionDTO> selectedQuestionDTOS) {
-        setSelectedQuestionDTOS(selectedQuestionDTOS);
+        setHardSelectedQuestionDTOS(selectedQuestionDTOS);
     }
 
     @Override
     public void onMediumDataPass(List<QuestionDTO> selectedQuestionDTOS) {
-        setSelectedQuestionDTOS(selectedQuestionDTOS);
+        setMediumSelectedQuestionDTOS(selectedQuestionDTOS);
     }
 }

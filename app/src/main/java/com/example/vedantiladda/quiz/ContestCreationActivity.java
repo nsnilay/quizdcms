@@ -1,13 +1,15 @@
 package com.example.vedantiladda.quiz;
 
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -25,14 +27,15 @@ import android.widget.Toast;
 import com.example.vedantiladda.quiz.dto.Category;
 import com.example.vedantiladda.quiz.dto.Contest;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import okhttp3.OkHttpClient;
@@ -41,8 +44,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import java.time.format.DateTimeFormatter;
-import java.time.LocalDateTime;
+
+import java.util.Map;
+import java.util.Set;
 
 public class ContestCreationActivity extends AppCompatActivity {
     private EditText contestName,startTime,duration,bonus,number_of_question;
@@ -51,8 +55,11 @@ public class ContestCreationActivity extends AppCompatActivity {
     Button selectCategoryButton;
     private Retrofit retrofit;
     private OkHttpClient client;
-    final List<String> catagoriesList = new ArrayList<>();
+    final List<String> categoriesList = new ArrayList<>();
     final Contest contest = new Contest();
+    final Map<String ,String> categoryListMap = new HashMap<>();
+    String AdminEmailId ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +75,8 @@ public class ContestCreationActivity extends AppCompatActivity {
     }
     public void categorySelectButtonListner()
     {
-        String popUpContents[] = new String[catagoriesList.size()];
-        catagoriesList.toArray(popUpContents);
+        String popUpContents[] = new String[categoriesList.size()];
+        categoriesList.toArray(popUpContents);
 
 
         // initialize pop up window
@@ -104,7 +111,7 @@ public class ContestCreationActivity extends AppCompatActivity {
         ListView listViewCategory = new ListView(this);
 
         // set our adapter and pass our pop up window contents
-        listViewCategory.setAdapter(CategoryAdapter(catagoriesList));
+        listViewCategory.setAdapter(CategoryAdapter(categoriesList));
 
         // set the item click listener
         listViewCategory.setOnItemClickListener(new CategoryWindowOnItemSelectListner());
@@ -128,15 +135,12 @@ public class ContestCreationActivity extends AppCompatActivity {
 
                 // setting the ID and text for every items in the list
                 String item = getItem(position);
-                String[] itemArr = item.split("::");
-                String text = itemArr[0];
-                String id = itemArr[1];
+                String text = item;
 
                 // visual settings for the list item
                 TextView listItem = new TextView(ContestCreationActivity.this);
 
                 listItem.setText(text);
-                listItem.setTag(id);
                 listItem.setTextSize(16);
                 listItem.setPadding(8, 8, 8, 8);
                 listItem.setTextColor(Color.WHITE);
@@ -167,6 +171,7 @@ public class ContestCreationActivity extends AppCompatActivity {
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(client)
                     .build();
+
             IApiCall iApiCall = retrofit.create(IApiCall.class);
             Call<List<Category>> getCategoriesCall = iApiCall.getCategories();
             getCategoriesCall.enqueue(new Callback<List<Category>>() {
@@ -176,30 +181,23 @@ public class ContestCreationActivity extends AppCompatActivity {
                     categories.addAll(response.body());
                     for(Category category : categories)
                     {
-                        catagoriesList.add(category.getCategoryName()+"::"+category.getCategoryId());
+                        categoriesList.add(category.getCategoryName());
+                        categoryListMap.put(category.getCategoryName(),category.getCategoryId());
                     }
-                    catagoriesList.add("tunnu::0");
 
                 }
 
                 @Override
                 public void onFailure(Call<List<Category>> call, Throwable t) {
                 Toast.makeText(ContestCreationActivity.this,"Fail",Toast.LENGTH_LONG).show();
-                    catagoriesList.add("shrivastav::0");
+                    categoriesList.add("Nothing to load::-1");
 
                 }
             });
 
-            return catagoriesList;
+            return categoriesList;
         }
-    private String getTag(String category)
-    {
-        for(String text : getCategortries()) {
-            if(text.split("::")[0] == category)
-                return text.split("::")[1];
-        }
-        return "Not Found";
-    }
+
     public void  addListnerToStartTimeET()
     {   final EditText startTime = findViewById(R.id.start_time_et);
         startTime.setOnClickListener(new View.OnClickListener() {
@@ -223,8 +221,7 @@ public class ContestCreationActivity extends AppCompatActivity {
             }
         });
     }
-    public Contest intiContest()
-    {
+    public Contest intiContest() throws ParseException {   final  SharedPreferences sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
         contestTypeSpinner = (Spinner) findViewById(R.id.contest_type_spinner);
         contestName = findViewById(R.id.contest_name_et);
         startTime = findViewById(R.id.start_time_et);
@@ -232,18 +229,22 @@ public class ContestCreationActivity extends AppCompatActivity {
         bonus = findViewById(R.id.bonus_et);
         number_of_question = findViewById(R.id.number_of_questions_et);
             contest.setCategoryName(selectCategoryButton.getText().toString());
-            contest.setCategoryId(getTag(selectCategoryButton.getText().toString()));
-            contest.setContestId("01");
-            contest.setAdminId("Admin");
+            contest.setCategoryId(categoryListMap.get(selectCategoryButton.getText().toString()));
+            contest.setAdminId(sharedPreferences.getString("userName","Admin"));
             contest.setBonus(Integer.parseInt(bonus.getText().toString()));
-            contest.setAdminId("01");
             contest.setContestType(contestTypeSpinner.getSelectedItem().toString());
             contest.setContestName(contestName.getText().toString());
-            contest.setEmail("Test@gmail.com");
-            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            contest.setEmail(sharedPreferences.getString("Email","Admin@gmail.com"));
+            SimpleDateFormat dateFormat = new SimpleDateFormat(
+                    "yyyy-MM-dd hh:mm:ss:SSS");
+
             Date date = new Date();
             String str = dateFormat.format(date).split(" ")[0].replaceAll("/","-") + " " +startTime.getText().toString()+":00";
-            contest.setStartDate(Timestamp.valueOf(str));
+
+            Date parsedTimeStamp = dateFormat.parse(str+":000");
+
+            Timestamp timestamp = new Timestamp(parsedTimeStamp.getTime());
+            contest.setStartDate(new Timestamp(timestamp.getTime()));
             Timestamp endTime = new Timestamp(Timestamp.valueOf(str).getTime()+Integer.parseInt(duration.getText().toString())*60*1000);
             contest.setEndDate(endTime);
             contest.setNumberOfQuestions(Integer.parseInt(number_of_question.getText().toString()));
@@ -264,37 +265,21 @@ public class ContestCreationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
+
                 if((contestName.getText().toString().length()!=0)&&(number_of_question.getText().toString().length()!=0)&&(bonus.getText().toString().length()!=0)&&(startTime.getText().toString().length()!=0)&&(!contestTypeSpinner.getSelectedItem().toString().equals("Select")))
                 {
-                client =  new OkHttpClient.Builder().build();
-                retrofit = new Retrofit.Builder().
-                        baseUrl(getString(R.string.contest_create_base_url))
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .client(client)
-                        .build();
-                IApiCall iApiCall = retrofit.create(IApiCall.class);
-                Call<Boolean> createCall = iApiCall.addContest(intiContest());
-               createCall.enqueue(new Callback<Boolean>() {
-                   @Override
-                   public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-                       Toast.makeText(ContestCreationActivity.this, "Done" , Toast.LENGTH_LONG).show();
 
+                    Intent intent = new Intent(ContestCreationActivity.this,QuestionBankActivity.class);
+                    intent.putExtra("ContestType",contestTypeSpinner.getSelectedItem().toString());
+                    intent.putExtra("Contest_CategoryId",categoryListMap.get(selectCategoryButton.getText().toString()));
+                    try {
+                        intent.putExtra("ContestObject",(Serializable) intiContest());
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    startActivity(intent);
 
-                       Intent intent = new Intent(ContestCreationActivity.this,QuestionBankActivity.class);
-                       intent.putExtra("ContestType",contestTypeSpinner.getSelectedItem().toString());
-                       intent.putExtra("Contest_CategoryId",getTag(selectCategoryButton.getText().toString()));
-                       startActivity(intent);
-
-
-                   }
-
-                   @Override
-                   public void onFailure(Call<Boolean> call, Throwable t) {
-                       Toast.makeText(ContestCreationActivity.this, "Please try after some time" , Toast.LENGTH_LONG).show();
-
-
-                   }
-               });
             }
             else
                 {
@@ -310,9 +295,7 @@ public class ContestCreationActivity extends AppCompatActivity {
     public class CustomOnItemSelectListener implements AdapterView.OnItemSelectedListener {
 
         public void onItemSelected(AdapterView<?> parent, View view, int pos,long id) {
-            Toast.makeText(parent.getContext(),
-                    "OnItemSelectedListener : " + parent.getItemAtPosition(pos).toString(),
-                    Toast.LENGTH_SHORT).show();
+
             if(contestTypeSpinner.getSelectedItem().toString().equals("static"))
             {
                 selectCategoryButton.setVisibility(View.VISIBLE);

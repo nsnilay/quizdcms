@@ -30,9 +30,7 @@ public class CategoryWindowOnItemSelectListner implements AdapterView.OnItemClic
             String selectedItemText = ((TextView) v).getText().toString();
             contestCreationActivity.selectCategoryButton.setText(selectedItemText);
 
-            // get the id
-            String selectedItemTag = ((TextView) v).getTag().toString();
-            Toast.makeText(mContext, "Category ID is: " + selectedItemTag, Toast.LENGTH_SHORT).show();
+
 
         }
 

@@ -66,10 +66,8 @@ public class HardFragment extends Fragment implements PaginationAdapter.Communic
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        //Returning the layout file after inflating
-        //Change R.layout.tab1 in you classes
-        //Return the layout file after inflating
-        Intent contest = getActivity().getParentActivityIntent();
+        selectedQuestionDTOS.clear();
+        Intent contest = getActivity().getIntent();
         contestType = contest.getStringExtra("ContestType");
         category = contest.getStringExtra("Contest_CategoryId");
         View view =  inflater.inflate(R.layout.hard_tab, container, false);
@@ -92,68 +90,28 @@ public class HardFragment extends Fragment implements PaginationAdapter.Communic
     }
     @Override
     public void onClickCheckBox(String id) {
+        Boolean flag = true;
+        for(QuestionDTO question: selectedQuestionDTOS){
+            if(question.getQuestionId().equals(id)){
+                flag = false;
+            }
+        }
+
         for(QuestionDTO questionDTO : questionDTOList) {
-            if(questionDTO.getQuestionId() == id)
+            if(questionDTO.getQuestionId().equals(id) && questionDTO.getChecked()&&flag)
                 selectedQuestionDTOS.add(questionDTO);
+            if(questionDTO.getQuestionId().equals(id) && !questionDTO.getChecked()) {
+                selectedQuestionDTOS.remove(questionDTO);
+                Log.d("REMOVE", selectedQuestionDTOS.toString());
+            }
+
         }
 
         hardQuestions.onHardDataPass(selectedQuestionDTOS);
     }
 
     private void loadFirstPage() {
-//        Log.d("TAG", "loadFirstPage: ");
-//        QuestionDTO questionDTO1 = new QuestionDTO();
-//        QuestionDTO questionDTO2 = new QuestionDTO();
-//        QuestionDTO questionDTO3 = new QuestionDTO();
-//        QuestionDTO questionDTO4 = new QuestionDTO();
-//        QuestionDTO questionDTO5 = new QuestionDTO();
-//        QuestionDTO questionDTO6 = new QuestionDTO();
-//        QuestionDTO questionDTO7 = new QuestionDTO();
-//        QuestionDTO questionDTO8 = new QuestionDTO();
-//        QuestionDTO questionDTO9 = new QuestionDTO();
-//        QuestionDTO questionDTO10 = new QuestionDTO();
-//
-//        questionDTO1.setQuestionContent("first");
-//        questionDTO1.setQuestionType("first");
-//        questionDTO2.setQuestionContent("second");
-//        questionDTO2.setQuestionType("second");
-//        questionDTO3.setQuestionContent("third");
-//        questionDTO3.setQuestionType("third");
-//        questionDTO4.setQuestionContent("fourth");
-//        questionDTO4.setQuestionType("fourth");
-//        questionDTO5.setQuestionContent("fifth");
-//        questionDTO5.setQuestionType("fifth");
-//        questionDTO6.setQuestionContent("sixth");
-//        questionDTO6.setQuestionType("sixth");
-//        questionDTO7.setQuestionContent("seventh");
-//        questionDTO7.setQuestionType("seventh");
-//        questionDTO8.setQuestionContent("eighth");
-//        questionDTO8.setQuestionType("eighth");
-//        questionDTO9.setQuestionContent("ninth");
-//        questionDTO9.setQuestionType("ninth");
-//        questionDTO10.setQuestionContent("tenth");
-//        questionDTO10.setQuestionType("tenth");
-//        questionDTO1.setQuestionId("1");
-//        questionDTO2.setQuestionId("2");
-//        questionDTO3.setQuestionId("3");
-//        questionDTO4.setQuestionId("4");
-//        questionDTO5.setQuestionId("5");
-//        questionDTO6.setQuestionId("6");
-//        questionDTO7.setQuestionId("7");
-//        questionDTO8.setQuestionId("8");
-//        questionDTO9.setQuestionId("9");
-//        questionDTO10.setQuestionId("10");
-//        questionDTOList.add(questionDTO1);
-//        questionDTOList.add(questionDTO2);
-//        questionDTOList.add(questionDTO3);
-//        questionDTOList.add(questionDTO4);
-//        questionDTOList.add(questionDTO5);
-//        questionDTOList.add(questionDTO6);
-//        questionDTOList.add(questionDTO7);
-//        questionDTOList.add(questionDTO8);
-//        questionDTOList.add(questionDTO9);
-//        questionDTOList.add(questionDTO10);
-//        adapter.notifyDataSetChanged();
+
 
         IApiCall iApiCall = retrofit.create(IApiCall.class);
         Call<List<QuestionDTO>> getAllCall = iApiCall.getAllQuestions("hard", 1);
@@ -181,36 +139,6 @@ public class HardFragment extends Fragment implements PaginationAdapter.Communic
 
 
     private void loadNextPage() {
-//        Log.d("TAG","loadNextPage: " + currentPage);
-//
-//        QuestionDTO questionDTO1 = new QuestionDTO();
-//        QuestionDTO questionDTO2 = new QuestionDTO();
-//        QuestionDTO questionDTO3 = new QuestionDTO();
-//        QuestionDTO questionDTO4 = new QuestionDTO();
-//        QuestionDTO questionDTO5 = new QuestionDTO();
-//
-//        questionDTO1.setQuestionContent("sixth");
-//        questionDTO1.setQuestionType("sixth");
-//        questionDTO2.setQuestionContent("seventh");
-//        questionDTO2.setQuestionType("seventh");
-//        questionDTO3.setQuestionContent("eighth");
-//        questionDTO3.setQuestionType("eighth");
-//        questionDTO4.setQuestionContent("ninth");
-//        questionDTO4.setQuestionType("ninth");
-//        questionDTO5.setQuestionContent("tenth");
-//        questionDTO5.setQuestionType("tenth");
-//        questionDTO1.setQuestionId("1");
-//        questionDTO2.setQuestionId("2");
-//        questionDTO3.setQuestionId("3");
-//        questionDTO4.setQuestionId("4");
-//        questionDTO5.setQuestionId("5");
-//
-//        questionDTOList.add(questionDTO1);
-//        questionDTOList.add(questionDTO2);
-//        questionDTOList.add(questionDTO3);
-//        questionDTOList.add(questionDTO4);
-//        questionDTOList.add(questionDTO5);
-//        adapter.notifyDataSetChanged();
 
 
         IApiCall iApiCall = retrofit.create(IApiCall.class);
