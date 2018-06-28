@@ -28,7 +28,7 @@
         </activity>
 
         <activity android:name=".Navigation_Activity"/>
-
+        <activity android:name=".CrawlActivity"/>
         <activity android:name=".LeaderboardActivity" />
         <activity android:name=".ContestCreationActivity"/>
         <activity android:name=".PublishActivity" />

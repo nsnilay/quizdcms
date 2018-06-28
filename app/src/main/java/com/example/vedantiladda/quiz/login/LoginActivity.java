@@ -67,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
         if(sharedPreferences.contains("userName")){
             Intent intent = new Intent(this,Navigation_Activity.class);
             startActivity(intent);
+            finish();
         }
 
         Button login_button = findViewById(R.id.login_button);

@@ -188,6 +188,8 @@ public class Navigation_Activity extends AppCompatActivity
 
         if (id == R.id.nav_crawl) {
             // Handle the camera action
+            Intent intent = new Intent(Navigation_Activity.this,CrawlActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_contest) {
             Intent intent = new Intent(Navigation_Activity.this,ContestCreationActivity.class);
             startActivity(intent);
@@ -203,7 +205,9 @@ public class Navigation_Activity extends AppCompatActivity
 
         } else if (id == R.id.nav_report) {
 
-        } else if (id == R.id.nav_logout) {
+        }else if (id == R.id.nav_set_rules) {
+
+        }else if (id == R.id.nav_logout) {
             SharedPreferences sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.remove("userName");

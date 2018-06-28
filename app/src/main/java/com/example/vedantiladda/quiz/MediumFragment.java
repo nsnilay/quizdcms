@@ -64,6 +64,7 @@ public class MediumFragment extends Fragment implements PaginationAdapter.Commun
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        selectedQuestionDTOS.clear();
         Intent contest = getActivity().getIntent();
         contestType = contest.getStringExtra("ContestType");
         category = contest.getStringExtra("Contest_CategoryId");

@@ -22,9 +22,18 @@
             android:title="Leaderboard" />
         <item
             android:id="@+id/nav_report"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_menu_share"
             android:title="Report" />
     </group>
+
+    <item android:title="Rules">
+        <menu>
+            <item
+                android:id="@+id/nav_set_rules"
+                android:icon="@drawable/ic_menu_manage"
+                android:title="Set Rules" />
+        </menu>
+    </item>
 
     <item android:title="Profile">
         <menu>

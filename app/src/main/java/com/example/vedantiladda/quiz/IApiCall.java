@@ -5,6 +5,7 @@ import com.example.vedantiladda.quiz.dto.ContestDTO;
 //import com.example.vedantiladda.quiz.model.StaticContest;
 import com.example.vedantiladda.quiz.dto.ContestwiseDTO;
 import com.example.vedantiladda.quiz.dto.OverallDTO;
+import com.example.vedantiladda.quiz.dto.UrlDTO;
 import com.example.vedantiladda.quiz.dto.UserDTO;
 
 import com.example.vedantiladda.quiz.dto.Category;
@@ -60,5 +61,11 @@ public interface IApiCall {
 
     @GET("contest/getRules")
     Call<ContestRulesDTO>getRules();
+
+    @GET("question/category/getAll")
+    Call<List<Category>> getall();
+
+    @POST("/crawler/crawl/")
+    Call<Boolean> crawl(@Body UrlDTO urlDTO);
 
 }

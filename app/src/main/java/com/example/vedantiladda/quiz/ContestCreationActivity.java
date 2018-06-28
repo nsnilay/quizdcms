@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.example.vedantiladda.quiz.dto.Category;
 import com.example.vedantiladda.quiz.dto.Contest;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -264,42 +265,21 @@ public class ContestCreationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
+
                 if((contestName.getText().toString().length()!=0)&&(number_of_question.getText().toString().length()!=0)&&(bonus.getText().toString().length()!=0)&&(startTime.getText().toString().length()!=0)&&(!contestTypeSpinner.getSelectedItem().toString().equals("Select")))
                 {
-                client =  new OkHttpClient.Builder().build();
-                retrofit = new Retrofit.Builder().
-                        baseUrl(getString(R.string.contest_create_base_url))
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .client(client)
-                        .build();
-                IApiCall iApiCall = retrofit.create(IApiCall.class);
-                    Call<Boolean> createCall = null;
+
+                    Intent intent = new Intent(ContestCreationActivity.this,QuestionBankActivity.class);
+                    intent.putExtra("ContestType",contestTypeSpinner.getSelectedItem().toString());
+                    intent.putExtra("Contest_CategoryId",categoryListMap.get(selectCategoryButton.getText().toString()));
                     try {
-                        createCall = iApiCall.addContest(intiContest());
+                        intent.putExtra("ContestObject",(Serializable) intiContest());
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
-                    createCall.enqueue(new Callback<Boolean>() {
-                   @Override
-                   public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-                       Toast.makeText(ContestCreationActivity.this, "Done" , Toast.LENGTH_LONG).show();
+                    startActivity(intent);
 
-
-                       Intent intent = new Intent(ContestCreationActivity.this,QuestionBankActivity.class);
-                       intent.putExtra("ContestType",contestTypeSpinner.getSelectedItem().toString());
-                       intent.putExtra("Contest_CategoryId",categoryListMap.get(selectCategoryButton.getText().toString()));
-                       startActivity(intent);
-
-
-                   }
-
-                   @Override
-                   public void onFailure(Call<Boolean> call, Throwable t) {
-                       Toast.makeText(ContestCreationActivity.this, "Please try after some time" , Toast.LENGTH_LONG).show();
-
-
-                   }
-               });
             }
             else
                 {

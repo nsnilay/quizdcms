@@ -66,9 +66,7 @@ public class HardFragment extends Fragment implements PaginationAdapter.Communic
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        //Returning the layout file after inflating
-        //Change R.layout.tab1 in you classes
-        //Return the layout file after inflating
+        selectedQuestionDTOS.clear();
         Intent contest = getActivity().getIntent();
         contestType = contest.getStringExtra("ContestType");
         category = contest.getStringExtra("Contest_CategoryId");

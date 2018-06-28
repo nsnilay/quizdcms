@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.vedantiladda.quiz.dto.Contest;
 import com.example.vedantiladda.quiz.dto.QuestionDTO;
 
 import java.io.Serializable;
@@ -49,11 +50,19 @@ public class QuestionBankActivity extends AppCompatActivity implements TabLayout
     }
 
     @Override
+    public void onResume(){
+        super.onResume();
+        selectedQuestionDTOS.clear();
+
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.static_question_bank);
-
-
+        selectedQuestionDTOS.clear();
+        Intent i = getIntent();
+        final Contest contest = (Contest)i.getSerializableExtra("Contest");
         //Adding toolbar to the activity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -127,6 +136,7 @@ public class QuestionBankActivity extends AppCompatActivity implements TabLayout
                 Log.d("Selected", selectedQuestionDTOS.toString());
                 Intent publish = new Intent(QuestionBankActivity.this, PublishActivity.class);
                 publish.putExtra("questions", (Serializable) selectedQuestionDTOS);
+                publish.putExtra("Contest", (Serializable)contest);
                 startActivity(publish);
             }
         });
