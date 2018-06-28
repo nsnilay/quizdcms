@@ -1,8 +1,9 @@
 package com.example.vedantiladda.quiz.dto;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ContestDTO {
+public class ContestDTO implements Serializable {
 
     private String contestId;
     private String contestName;

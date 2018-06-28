@@ -15,8 +15,8 @@
     <string name="title_section2">Section 2</string>
     <string name="title_section3">Section 3</string>
 
-    <string name="base_url_category">http://10.177.1.100:8080/question/</string>
-    <string name="base_url_contest">http://10.177.2.201:8080/contest/</string>
+    <string name="base_url_category">http://10.177.2.15:8080/question/</string>
+    <string name="base_url_contest">http://10.177.2.201:8080/</string>
 
     <string name="action_example">Example action</string>
     <string name="title_activity_contest_names">ContestNames</string>
@@ -29,4 +29,5 @@
     <string name="contest_bonus">Bonus - </string>
     <string name="title_activity_game">GameActivity</string>
     <string name="title_activity_test">Test</string>
+    <string name="title_activity_dynamic_game">DynamicGame</string>
 </resources>

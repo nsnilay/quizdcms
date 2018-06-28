@@ -87,6 +87,9 @@ public class ContestNames extends AppCompatActivity implements RVContestNameAdap
 
     @Override
     public void onItemClick(ContestDTO contestDTO) {
+        Intent intent = new Intent(ContestNames.this, GameActivity.class);
+        intent.putExtra("contestDTO", contestDTO);
+        startActivity(intent);
 
     }
 }

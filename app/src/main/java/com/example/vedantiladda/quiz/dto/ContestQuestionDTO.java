@@ -9,14 +9,8 @@ public class ContestQuestionDTO {
     private Boolean visible;
     private String contestQuestionId;
     private QuestionDTO questionDTO;
+    private UserAnswerDTO userAnswerDTO;
 
-    public Boolean getVisible() {
-        return visible;
-    }
-
-    public void setVisible(Boolean visible) {
-        this.visible = visible;
-    }
 
     @Override
     public String toString() {
@@ -29,6 +23,7 @@ public class ContestQuestionDTO {
                 ", visible=" + visible +
                 ", contestQuestionId='" + contestQuestionId + '\'' +
                 ", questionDTO=" + questionDTO +
+                ", userAnswerDTO=" + userAnswerDTO +
                 '}';
     }
 
@@ -88,4 +83,21 @@ public class ContestQuestionDTO {
     public void setQuestionDTO(QuestionDTO questionDTO) {
         this.questionDTO = questionDTO;
     }
+
+    public UserAnswerDTO getUserAnswerDTO() {
+        return userAnswerDTO;
+    }
+
+    public void setUserAnswerDTO(UserAnswerDTO userAnswerDTO) {
+        this.userAnswerDTO = userAnswerDTO;
+    }
+
+    public Boolean getVisible() {
+        return visible;
+    }
+
+    public void setVisible(Boolean visible) {
+        this.visible = visible;
+    }
+
 }

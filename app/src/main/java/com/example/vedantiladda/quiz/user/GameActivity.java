@@ -1,6 +1,7 @@
 package com.example.vedantiladda.quiz.user;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -20,19 +21,26 @@ import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.example.vedantiladda.quiz.R;
+import com.example.vedantiladda.quiz.dto.CategoryDTO;
 import com.example.vedantiladda.quiz.dto.ContestDTO;
 import com.example.vedantiladda.quiz.dto.ContestQuestionDTO;
+import com.example.vedantiladda.quiz.dto.QuestionDTO;
+import com.example.vedantiladda.quiz.dto.UserAnswerDTO;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -49,13 +57,15 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private static final String TAG = "GAMEACTIVITY";
 
     private TextView questionText, skipCountText, questionNumberText;
-    private Button beginButton;
+    private LinearLayout linearLayout;
+    private CheckBox optionOne, optionTwo, optionThree, optionFour;
+    private EditText sequenceText;
+    private Button beginButton, finishButton;
     private MediaSessionCompat mMediaSession;
     private PlaybackStateCompat.Builder mStateBuilder;
     private VideoView videoView;
     private ContestDTO contestDTO;
-    private ContestQuestionDTO contestQuestionDTO;
-    private List<ContestQuestionDTO> contestQuestionDTOList, copyContestQuestionDTOList;
+    private List<ContestQuestionDTO> contestQuestionDTOList = new ArrayList<>();
     private ImageView imageView;
     private Uri videoUri;
     private MediaController mediaController;
@@ -68,7 +78,17 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     static final String MEDIA_LOG_TAG = "MediaLogTag";
     static final int MY_PERMISSIONS_REQUEST_READ_STORAGE = 1;
 
-    static int skipCount = 0;
+    private int skipCount = 0;
+
+    private ContestQuestionDTO globalContestQuestionDTO;
+    private String answerType;
+    private String userId;
+    private Integer points;
+    private Boolean skipped;
+
+    private String testUserId = "testUserId";
+
+    private String contestId = "c6575890-8bc8-4edd-a443-8fd97234e496";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,81 +99,465 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         setAllViews();
         requestPermissions();
 
-    //    contestDTO = (ContestDTO) getIntent().getSerializableExtra("contestDTO");
-
-        //  get All questions whenever the activity starts
-
-        contestQuestionDTOList = new ArrayList<>();
-        copyContestQuestionDTOList = new ArrayList<>();
-        contestDTO = new ContestDTO();
-        contestQuestionDTOList = getAllQuestionsByContest("bb23cb83-b906-43d5-aa93-bf8af9f54ed8");//contestDTO.getContestId());
-
-        mMediaSession = new MediaSessionCompat(this, MEDIA_LOG_TAG);
-        //Creating MediaController
-        mediaController= new MediaController(this);
-        mediaController.setAnchorView(videoView);
-
-//        displayVideo();
-
-        nextQuestionFab.setOnClickListener(this);
-        skipQuestionFab.setOnClickListener(this);
-        beginButton.setOnClickListener(this);
-    }
-
-    private List<ContestQuestionDTO> getAllQuestionsByContest(String contestId) {
+//        contestDTO = (ContestDTO)getIntent().getSerializableExtra("contestDTO");
+//        contestId = contestDTO.getContestId();
 
         client = new OkHttpClient.Builder().build();
-
         retrofit = new Retrofit.Builder()
                 .baseUrl(getString(R.string.base_url_contest))
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();
 
+    //    contestDTO = (ContestDTO) getIntent().getSerializableExtra("contestDTO");
+
+        contestQuestionDTOList = new ArrayList<>();
+        contestDTO = new ContestDTO();
+        contestQuestionDTOList = getAllQuestionsByContest(contestId, false);//contestDTO.getContestId());
+
+        mMediaSession = new MediaSessionCompat(this, MEDIA_LOG_TAG);
+        //Creating MediaController
+        mediaController= new MediaController(this);
+        mediaController.setAnchorView(videoView);
+
+        nextQuestionFab.setOnClickListener(this);
+        skipQuestionFab.setOnClickListener(this);
+        beginButton.setOnClickListener(this);
+        finishButton.setOnClickListener(this);
+    }
+
+    void setAllViews(){
+        questionText = findViewById(R.id.question_text);
+        questionText.setMovementMethod(new ScrollingMovementMethod());
+        skipCountText = findViewById(R.id.skip_count_text);
+        questionNumberText = findViewById(R.id.question_number);
+
+        videoView = findViewById(R.id.video);
+        imageView = findViewById(R.id.image);
+
+        nextQuestionFab = findViewById(R.id.next_question);
+        skipQuestionFab = findViewById(R.id.skip_question_button);
+
+        beginButton = findViewById(R.id.begin_button);
+        finishButton = findViewById(R.id.finish_button);
+
+        linearLayout = findViewById(R.id.linear);
+
+        optionOne = findViewById(R.id.option_A);
+        optionTwo = findViewById(R.id.option_B);
+        optionThree = findViewById(R.id.option_C);
+        optionFour = findViewById(R.id.option_D);
+
+        sequenceText = findViewById(R.id.sequence_answer);
+
+
+    }
+
+    private void showQuestionViews(){
+        questionText.setVisibility(View.VISIBLE);
+        linearLayout.setVisibility(View.VISIBLE);
+        sequenceText.setVisibility(View.VISIBLE);
+    }
+
+    private List<ContestQuestionDTO> getAllQuestionsByContest(String contestId, final Boolean flag) {
 
         UserApiCall userApiCall = retrofit.create(UserApiCall.class);
 
-        Call<ContestDTO> getAllQuestions = userApiCall.getQuestionsByContest(contestId);
+        Call<ContestDTO> getAllQuestions = userApiCall.getQuestionsByContest(contestId, testUserId);
         getAllQuestions.enqueue(new Callback<ContestDTO>() {
             @Override
             public void onResponse(Call<ContestDTO> call, Response<ContestDTO> response) {
-                Log.d(TAG,call.request().url().toString());
-
-                contestQuestionDTOList = response.body().getContestQuestionDTOList();
+                Log.d(TAG,response.body().getContestQuestionDTOList().toString());
+                if(flag) {
+                    contestQuestionDTOList.clear();
+                }contestQuestionDTOList = response.body().getContestQuestionDTOList();
+                countSkips();
                 Toast.makeText(GameActivity.this,"Retrieved questions Successfully" , Toast.LENGTH_SHORT).show();
+                if(flag){
+                    findEligibleQuestion();
+                }
             }
 
             @Override
             public void onFailure(Call<ContestDTO> call, Throwable t) {
                 Toast.makeText(GameActivity.this,"API call failed" , Toast.LENGTH_SHORT).show();
                 Log.e(TAG, t.getMessage());
-
-
             }
         });
-//        Toast.makeText(GameActivity.this,"Retrieved questions Successfully" + contestDTO.getContestQuestionDTOList().toString() , Toast.LENGTH_SHORT).show();
-
-
         return contestDTO.getContestQuestionDTOList();
-
     }
+
+    private void countSkips(){
+        skipCount=0;
+        for(ContestQuestionDTO contestQuestionDTO : contestQuestionDTOList){
+            if(contestQuestionDTO.getUserAnswerDTO()!=null){
+                if(contestQuestionDTO.getUserAnswerDTO().getSkipped())
+                    skipCount++;
+            }
+        }
+        Log.d("SKIPCOUNT", String.valueOf(skipCount));
+    }
+
 
     private void displayQuestion(ContestQuestionDTO contestQuestionDTO){
 
+        if(contestQuestionDTO == null){
+      //      Log.d(TAG, "NO MORE QUESTIONS"  + contestQuestionDTO.getQuestionDTO().toString());
+            Toast.makeText(GameActivity.this,"No more questions", Toast.LENGTH_SHORT).show();
+            linearLayout.setVisibility(View.GONE);
+            sequenceText.setVisibility(View.GONE);
+            finishButton.setVisibility(View.VISIBLE);
+            return;
+        }
+        Log.d(TAG, contestQuestionDTO.getQuestionDTO().toString());
+        points = contestQuestionDTO.getPoints();
+
+        QuestionDTO questionDTO = globalContestQuestionDTO.getQuestionDTO();
+        switch (questionDTO.getQuestionType()){
+            case "text":
+                showQuestionViews();
+                answerType = questionDTO.getAnswerType();
+                questionText.setText(questionDTO.getQuestionText());
+                optionOne.setText("A: " + questionDTO.getOptionOne());
+                optionTwo.setText("B: " + questionDTO.getOptionTwo());
+                optionThree.setText("C: " + questionDTO.getOptionThree());
+                optionFour.setText("D: " + questionDTO.getOptionFour());
+
+                break;
+            case "audio":
+                try {
+                    playAudio(questionDTO);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case "video":
+                displayVideo(questionDTO);
+                break;
+            case "image":
+                displayImage(questionDTO);
+                break;
+        }
+
         //check the question type....accordingly display the user the video, audio and then the question
         // when the user presses the next button, make an API call
+        // return question is null then, endgame
 
     }
 
     private void findEligibleQuestion(){
-        // TODO : iterate the list of questions and find the eligible questions, then pass the question to displayQuestion
-        /* for every question in question list
-                if(isAnswered){ nextquestion}
-                elseif (!isAnswered && skipcount!=2){ this is the question we have to return}
-                if {skipcount ==2){
-                        display you ran out of skips, change skipcount = 0 and display questions from beginning
+        Boolean flag = true;
+        for(ContestQuestionDTO contestQuestionDTO: contestQuestionDTOList){
+            Log.d(TAG + "contestQLis", contestQuestionDTO.toString());
+//
+            if(contestQuestionDTO.getUserAnswerDTO() != null){
+                if(contestQuestionDTO.getUserAnswerDTO().getAnswered()) {
+                    continue;
+                }
+            }
+
+            if(skipCount<=2 && contestQuestionDTO.getUserAnswerDTO() == null){
+                globalContestQuestionDTO = contestQuestionDTO;
+                displayQuestion(contestQuestionDTO);
+                return;
+            }else if(skipCount<=2 && !contestQuestionDTO.getUserAnswerDTO().getSkipped() &&
+                    !contestQuestionDTO.getUserAnswerDTO().getAnswered()) {
+                globalContestQuestionDTO = contestQuestionDTO;
+                displayQuestion(contestQuestionDTO);
+                return;
+            }
+
+//            if(contestQuestionDTO.getUserAnswerDTO() == null //&& !contestQuestionDTO.getUserAnswerDTO().getSkipped()
+//                    && skipCount <= 2 ){
+//                globalContestQuestionDTO = contestQuestionDTO;
+//                displayQuestion(contestQuestionDTO);
+//                return;
+//            }else if(skipCount == 2 && contestQuestionDTO.getUserAnswerDTO().getSkipped()) {
+//                //display you ran out of skips
+//                globalContestQuestionDTO = contestQuestionDTO;
+//                displayQuestion(contestQuestionDTO);
+//                return;
+//            }
+        }
+        for(ContestQuestionDTO contestQuestionDTO: contestQuestionDTOList){
+            if(contestQuestionDTO.getUserAnswerDTO().getSkipped()){
+                globalContestQuestionDTO = contestQuestionDTO;
+                displayQuestion(contestQuestionDTO);
+                return;
+            }
+        }
+        displayQuestion(null);
+
+    }
+
+
+
+    private String getSuitableAnswer(){
+        StringBuilder answerBuilder = new StringBuilder();
+        Boolean flag=false;
+        if(answerType.equals("sequence")){
+            return sequenceText.getText().toString().toUpperCase();
+        }
+        if(optionOne.isChecked()) {
+            answerBuilder.append("A");
+            flag=true;
+        }
+        if(optionTwo.isChecked()) {
+            answerBuilder.append("B");
+            flag=true;
+        }if(optionThree.isChecked()) {
+            answerBuilder.append("C");
+            flag=true;
+        }
+        if(optionFour.isChecked()) {
+            flag=true;
+            answerBuilder.append("D");
+        }
+
+        if(flag)
+            return answerBuilder.toString();
+        else{
+            return null;
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+
+            case R.id.next_question:
+                /* TODO: First see which all checkboxes are checked
+                            then, or see if the answer is sequence
+                            make the pojo of user answer and then
+                            Call API to save the answer state
+                            and then after successful api call find eligible question
+
+                 */
+//                imageView.setVisibility(View.INVISIBLE);
+//                linearLayout.setVisibility(View.INVISIBLE);
+                UserAnswerDTO userAnswerDTO = new UserAnswerDTO();
+//                userAnswerDTO.getContestQuestionDTO().setContestQuestionId(globalContestQuestionDTO.getContestQuestionId());
+                userAnswerDTO.setContestQuestionDTO(globalContestQuestionDTO);
+                if(globalContestQuestionDTO.getUserAnswerDTO()!=null) {
+                    if (globalContestQuestionDTO.getUserAnswerDTO().getUserAnswerId() != null) {
+                        userAnswerDTO.setUserAnswerId(globalContestQuestionDTO.getUserAnswerDTO().getUserAnswerId());
+                    }
+                }
+                userAnswerDTO.setAnswer(getSuitableAnswer());
+                userAnswerDTO.setUserId(testUserId);
+                userAnswerDTO.setPoints(points);
+                userAnswerDTO.setSkipped(false);
+                userAnswerDTO.setTimeOfAnswer(null);
+                userAnswerDTO.setAnswered(true);
+
+                UserApiCall userApiCall = retrofit.create(UserApiCall.class);
+                Call<Boolean> saveAnswer = userApiCall.saveAnswer(userAnswerDTO);
+                saveAnswer.enqueue(new Callback<Boolean>() {
+                    @Override
+                    public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                        Log.d(TAG, response.body().toString());
+                        getAllQuestionsByContest(contestId, true);
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<Boolean> call, Throwable t) {
+
+                    }
+                });
+
+
+                break;
+
+            case R.id.skip_question_button :
+//                imageView.setVisibility(View.INVISIBLE);
+//                linearLayout.setVisibility(View.INVISIBLE);
+
+                if(skipCount == 2){
+                    Toast.makeText(GameActivity.this,"Skips over",Toast.LENGTH_SHORT).show();
+                    for(ContestQuestionDTO contestQuestionDTO : contestQuestionDTOList){
+                        if(contestQuestionDTO.getUserAnswerDTO()!=null){
+                            if(contestQuestionDTO.getUserAnswerDTO().getSkipped()){
+
+                                Log.d("ERROR",contestQuestionDTO.getUserAnswerDTO().toString());
+                                UserAnswerDTO skipUserAnswerDTO = new UserAnswerDTO();
+                                skipUserAnswerDTO.setUserAnswerId(contestQuestionDTO.getUserAnswerDTO().getUserAnswerId());
+                                skipUserAnswerDTO.setContestQuestionDTO(contestQuestionDTO);
+                                skipUserAnswerDTO.setAnswer(getSuitableAnswer());
+                                skipUserAnswerDTO.setUserId(testUserId);
+                                skipUserAnswerDTO.setPoints(points);
+                                skipUserAnswerDTO.setSkipped(false);
+                                skipUserAnswerDTO.setAnswered(false);
+                                Log.d("ERROR",skipUserAnswerDTO.toString());
+
+                                UserApiCall skipuserApiCall = retrofit.create(UserApiCall.class);
+
+                                Call<Boolean> skipsaveAnswer = skipuserApiCall.saveAnswer(skipUserAnswerDTO);
+                                skipsaveAnswer.enqueue(new Callback<Boolean>() {
+                                    @Override
+                                    public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+
+                                        Log.d(TAG, response.body().toString());
+//                                        getAllQuestionsByContest(MycontestId, true);
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<Boolean> call, Throwable t) {
+                                        Log.e("ERROR", t.getMessage());
+
+                                    }
+                                });
+
+
+                            }
+                        }
+                    }
+                    break;
+                }else if(skipCount < 2) {
+                    UserAnswerDTO skipUserAnswerDTO = new UserAnswerDTO();
+                    skipUserAnswerDTO.setContestQuestionDTO(globalContestQuestionDTO);
+                    skipUserAnswerDTO.setAnswer(getSuitableAnswer());
+                    if(globalContestQuestionDTO.getUserAnswerDTO()!=null) {
+                        if (globalContestQuestionDTO.getUserAnswerDTO().getUserAnswerId() != null) {
+                            skipUserAnswerDTO.setUserAnswerId(globalContestQuestionDTO.getUserAnswerDTO().getUserAnswerId());
+                        }
+                    }
+                    skipUserAnswerDTO.setUserId(testUserId);
+                    skipUserAnswerDTO.setPoints(points);
+                    skipUserAnswerDTO.setSkipped(true);
+                    skipUserAnswerDTO.setAnswered(false);
+                    UserApiCall skipuserApiCall = retrofit.create(UserApiCall.class);
+
+                    Call<Boolean> skipsaveAnswer = skipuserApiCall.saveAnswer(skipUserAnswerDTO);
+                    skipsaveAnswer.enqueue(new Callback<Boolean>() {
+                        @Override
+                        public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                            Log.d(TAG, response.body().toString());
+                            getAllQuestionsByContest(contestId, true);
+                        }
+
+                        @Override
+                        public void onFailure(Call<Boolean> call, Throwable t) {
+
+                        }
+                    });
+                }
+                break;
+
+            case R.id.begin_button:
+                beginButton.setVisibility(View.GONE);
+                Toast.makeText(GameActivity.this,contestQuestionDTOList.toString(),Toast.LENGTH_SHORT).show();
+                findEligibleQuestion();
+//                displayVideo();
+                break;
+
+            case R.id.finish_button:
+                startActivity(new Intent(GameActivity.this,UserMain.class));
+        }
+    }
+
+    private void displayVideo(final QuestionDTO questionDTO){
+
+        //specify the location of media file
+        videoView.setVisibility(View.VISIBLE);
+        videoUri=Uri.parse(questionDTO.getQuestionUrl());//https://degrading-turnaroun.000webhostapp.com/small.mp4");//Environment.getExternalStorageDirectory().getPath()+"/media/1.mp4");
+        //Setting MediaController and URI, then starting the videoView
+        videoView.setMediaController(mediaController);
+        videoView.setVideoURI(videoUri);
+        videoView.requestFocus();
+        videoView.start();
+        videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                try {
+                    showQuestionViews();
+                    answerType = questionDTO.getAnswerType();
+                    questionText.setText(questionDTO.getQuestionText());
+                    optionOne.setText("A: " + questionDTO.getOptionOne());
+                    optionTwo.setText("B: " + questionDTO.getOptionTwo());
+                    optionThree.setText("C: " + questionDTO.getOptionThree());
+                    optionFour.setText("D: " + questionDTO.getOptionFour());
+                    mediaPlayer.stop();
+                    videoView.setVisibility(View.INVISIBLE);
+
+                    //playAudio();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+    }
+
+    private void playAudio(final QuestionDTO questionDTO) throws IOException {
+        mediaPlayer = new MediaPlayer();
+        mediaPlayer.setDataSource(questionDTO.getQuestionUrl());//"http://www.hubharp.com/web_sound/BachGavotteShort.mp3");
+        mediaPlayer.prepare();
+        mediaPlayer.start();
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                showQuestionViews();
+                answerType = questionDTO.getAnswerType();
+                questionText.setText(questionDTO.getQuestionText());
+                optionOne.setText("A: " + questionDTO.getOptionOne());
+                optionTwo.setText("B: " + questionDTO.getOptionTwo());
+                optionThree.setText("C: " + questionDTO.getOptionThree());
+                optionFour.setText("D: " + questionDTO.getOptionFour());
+                mediaPlayer.stop();
+               // displayImage();
+            }
+        });
+
+
+    }
+
+    private void displayImage(QuestionDTO questionDTO){
+        imageView.setVisibility(View.VISIBLE);
+        new DownLoadImageTask(imageView).execute(questionDTO.getQuestionUrl());//"https://i.ytimg.com/vi/y0VODhYvq3s/maxresdefault.jpg");
+        showQuestionViews();
+        answerType = questionDTO.getAnswerType();
+        questionText.setText(questionDTO.getQuestionText());
+        optionOne.setText("A: " + questionDTO.getOptionOne());
+        optionTwo.setText("B: " + questionDTO.getOptionTwo());
+        optionThree.setText("C: " + questionDTO.getOptionThree());
+        optionFour.setText("D: " + questionDTO.getOptionFour());
+    }
+
+    private class DownLoadImageTask extends AsyncTask<String,Void,Bitmap> {
+        ImageView imageView;
+
+        public DownLoadImageTask(ImageView imageView){
+            this.imageView = imageView;
+        }
+
+        /*
+            doInBackground(Params... params)
+                Override this method to perform a computation on a background thread.
          */
-        
+        protected Bitmap doInBackground(String...urls){
+            String urlOfImage = urls[0];
+            Bitmap logo = null;
+            try{
+                InputStream is = new URL(urlOfImage).openStream();
+                /*
+                    decodeStream(InputStream is)
+                        Decode an input stream into a bitmap.
+                 */
+                logo = BitmapFactory.decodeStream(is);
+            }catch(Exception e){ // Catch the download exception
+                e.printStackTrace();
+            }
+            return logo;
+        }
+
+        /*
+            onPostExecute(Result result)
+                Runs on the UI thread after doInBackground(Params...).
+         */
+        protected void onPostExecute(Bitmap result){
+            imageView.setImageBitmap(result);
+        }
     }
 
     private void requestPermissions() {
@@ -210,121 +614,5 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    void setAllViews(){
-        questionText = findViewById(R.id.question_text);
-        questionText.setMovementMethod(new ScrollingMovementMethod());
-        skipCountText = findViewById(R.id.skip_count_text);
-        questionNumberText = findViewById(R.id.question_number);
-
-        videoView = findViewById(R.id.video);
-        imageView = findViewById(R.id.image);
-
-        nextQuestionFab = findViewById(R.id.next_question);
-        skipQuestionFab = findViewById(R.id.skip_question_button);
-
-        beginButton = findViewById(R.id.begin_button);
-
-
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()){
-
-            case R.id.next_question:
-                /* TODO: Call API to save the answer state
-                    and then
-                 */
-
-
-                break;
-
-            case R.id.skip_question_button :
-                break;
-
-            case R.id.begin_button:
-                beginButton.setVisibility(View.GONE);
-                Toast.makeText(GameActivity.this,contestQuestionDTOList.toString(),Toast.LENGTH_SHORT).show();
-                findEligibleQuestion();
-//                displayNextQuestion(contestQuestionDTO);
-                break;
-        }
-    }
-
-    private void displayVideo(){
-        //specify the location of media file
-        videoUri=Uri.parse("http://techslides.com/demos/sample-videos/small.mp4");//Environment.getExternalStorageDirectory().getPath()+"/media/1.mp4");
-        //Setting MediaController and URI, then starting the videoView
-        videoView.setMediaController(mediaController);
-        videoView.setVideoURI(videoUri);
-        videoView.requestFocus();
-        videoView.start();
-        videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mediaPlayer) {
-                try {
-                    playAudio();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-    }
-
-    private void playAudio() throws IOException {
-        mediaPlayer = new MediaPlayer();
-        mediaPlayer.setDataSource("http://www.hubharp.com/web_sound/BachGavotteShort.mp3");
-        mediaPlayer.prepare();
-        mediaPlayer.start();
-        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mediaPlayer) {
-                displayImage();
-            }
-        });
-
-
-    }
-
-    private void displayImage(){
-        new DownLoadImageTask(imageView).execute("https://i.ytimg.com/vi/y0VODhYvq3s/maxresdefault.jpg");
-    }
-
-    private class DownLoadImageTask extends AsyncTask<String,Void,Bitmap> {
-        ImageView imageView;
-
-        public DownLoadImageTask(ImageView imageView){
-            this.imageView = imageView;
-        }
-
-        /*
-            doInBackground(Params... params)
-                Override this method to perform a computation on a background thread.
-         */
-        protected Bitmap doInBackground(String...urls){
-            String urlOfImage = urls[0];
-            Bitmap logo = null;
-            try{
-                InputStream is = new URL(urlOfImage).openStream();
-                /*
-                    decodeStream(InputStream is)
-                        Decode an input stream into a bitmap.
-                 */
-                logo = BitmapFactory.decodeStream(is);
-            }catch(Exception e){ // Catch the download exception
-                e.printStackTrace();
-            }
-            return logo;
-        }
-
-        /*
-            onPostExecute(Result result)
-                Runs on the UI thread after doInBackground(Params...).
-         */
-        protected void onPostExecute(Bitmap result){
-            imageView.setImageBitmap(result);
-        }
-    }
 
 }

@@ -12,7 +12,6 @@ public class QuestionDTO {
     private String optionTwo;
     private String optionThree;
     private String optionFour;
-    private String answer;
     private String answerType;
     private String status;
 
@@ -96,14 +95,6 @@ public class QuestionDTO {
         this.optionFour = optionFour;
     }
 
-    public String getAnswer() {
-        return answer;
-    }
-
-    public void setAnswer(String answer) {
-        this.answer = answer;
-    }
-
     public String getAnswerType() {
         return answerType;
     }
@@ -133,7 +124,6 @@ public class QuestionDTO {
                 ", optionTwo='" + optionTwo + '\'' +
                 ", optionThree='" + optionThree + '\'' +
                 ", optionFour='" + optionFour + '\'' +
-                ", answer='" + answer + '\'' +
                 ", answerType='" + answerType + '\'' +
                 ", status='" + status + '\'' +
                 '}';
