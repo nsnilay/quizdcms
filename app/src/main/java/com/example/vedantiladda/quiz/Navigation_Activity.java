@@ -206,6 +206,9 @@ public class Navigation_Activity extends AppCompatActivity
         } else if (id == R.id.nav_report) {
 
         }else if (id == R.id.nav_set_rules) {
+            Intent intent = new Intent(this, ContestRulesActivity.class);
+            startActivity(intent);
+
 
         }else if (id == R.id.nav_logout) {
             SharedPreferences sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE);

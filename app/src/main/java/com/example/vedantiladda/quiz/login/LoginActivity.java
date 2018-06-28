@@ -20,6 +20,8 @@ import com.example.vedantiladda.quiz.dto.UserLogin;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.List;
+
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private Retrofit retrofit;
     private String url = "http://10.177.2.200:8080/";
-    private String username;
+    private List<String> username;
 
     public boolean isValidEmailAddress2(String email) {
         String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
@@ -96,11 +98,11 @@ public class LoginActivity extends AppCompatActivity {
                 userLogin.setPassword(editText9.getText().toString());
 
                 final PostAll login = retrofit.create(PostAll.class);
-                Call<String> loginCall = login.loginDetails(userLogin);
+                Call<List<String>> loginCall = login.loginDetails(userLogin);
 
-                loginCall.enqueue(new Callback<String>() {
+                loginCall.enqueue(new Callback<List<String>>() {
                     @Override
-                    public void onResponse(Call<String> call, Response<String> response) {
+                    public void onResponse(Call<List<String>> call, Response<List<String>> response) {
 
                         if(response.body() == null){
                             Toast.makeText(getApplicationContext(), "please enter valid credentials!", Toast.LENGTH_SHORT).show();
@@ -110,7 +112,8 @@ public class LoginActivity extends AppCompatActivity {
                             username = response.body();
                             SharedPreferences sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putString("userName", username);
+                            editor.putString("userName", username.get(1));
+                            editor.putString("Role", username.get(2));
                             editor.putString("Email",editTextValue );
                             editor.apply();
 
@@ -123,7 +126,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<String> call, Throwable t) {
+                    public void onFailure(Call<List<String>> call, Throwable t) {
                         Log.d("hey",call.request().body().toString());
 
                         Log.d("hey",t.getMessage());
