@@ -31,4 +31,5 @@ public interface UserApiCall {
 
     @GET("contest/getContestPoints/{contestId}/{userId}")
     Call<Boolean> callLeaderboard(@Path("contestId")String contestId, @Path("userId")String userId);
+
 }

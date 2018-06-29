@@ -33,7 +33,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class LoginActivity extends AppCompatActivity {
 
     private Retrofit retrofit;
-    private String url = "http://10.177.2.200:8080/";
+    private String url = "http://10.177.2.200:8082/";
     private List<String> username;
 
     public boolean isValidEmailAddress2(String email) {
