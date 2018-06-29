@@ -54,6 +54,9 @@ public class UserMain extends AppCompatActivity
 
         displaySelectedScreen(R.id.nav_contests);
 
+        FirebaseMessaging.getInstance().unsubscribeFromTopic("quizMaster");
+
+
 
     }
 

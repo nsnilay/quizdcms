@@ -30,6 +30,9 @@ public interface UserApiCall {
     Call<Boolean> saveAnswer(@Body UserAnswerDTO userAnswerDTO);
 
     @GET("contest/getContestPoints/{contestId}/{userId}")
+    Call<Boolean> dynamicLeaderboard(@Path("contestId")String contestId, @Path("userId")String userId);
+
+    @GET("contest/getContestPoints/{contestId}/{userId}")
     Call<Boolean> callLeaderboard(@Path("contestId")String contestId, @Path("userId")String userId);
 
 }

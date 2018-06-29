@@ -37,8 +37,7 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
     public void onBindViewHolder(@NonNull final LeaderboardAdapter.LeaderboardHolder holder, int position) {
         final OverallDTO overallDTO = overallDTOS.get(position);
         holder.username.setText(overallDTO.getUserId());
-        Log.d("API",overallDTO.getPointInt().toString());
-        holder.points.setText(String.valueOf(overallDTO.getPointInt()));
+        holder.points.setText(String.valueOf(overallDTO.getFinalPoints()));
         holder.rank.setText(String.valueOf(overallDTO.getRank()));
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override

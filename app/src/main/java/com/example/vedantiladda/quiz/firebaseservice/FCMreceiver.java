@@ -8,6 +8,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.vedantiladda.quiz.QuizMaster.QuizMasterActivity;
 import com.example.vedantiladda.quiz.dto.FCMQuestion;
 import com.example.vedantiladda.quiz.user.DynamicGame;
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -39,45 +40,59 @@ public class FCMreceiver extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(final RemoteMessage remoteMessage) {
         // ...
+        Log.d("Message", "From:  User" + remoteMessage.getFrom());
 
-        // TODO(developer): Handle FCM messages here.
-        // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
-        Log.d("Message", "From: " + remoteMessage.getFrom());
+        if(remoteMessage.getFrom().equals("/topics/user")){
 
         // Check if message contains a data payload.
-        if (remoteMessage.getData().size() > 0) {
-            Log.d("Message", "Message data payload: " + remoteMessage.getData());
-            Handler mainHandler = new Handler(getMainLooper());
+            if (remoteMessage.getData().size() > 0) {
+                Log.d("Message", "Message data payload: from USer " + remoteMessage.getData());
+                Handler mainHandler = new Handler(getMainLooper());
 
-            mainHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    FCMQuestion fcmQuestion = new FCMQuestion();
-                    fcmQuestion.setQuestionId(remoteMessage.getData().get(questionId));
-                    fcmQuestion.setContestQuestionId(remoteMessage.getData().get(contestQuestionId));
-                    fcmQuestion.setCategoryId(remoteMessage.getData().get(categoryId));
-                    fcmQuestion.setDifficulty(remoteMessage.getData().get(difficulty));
-                    fcmQuestion.setQuestionType(remoteMessage.getData().get(questionType));
-                    fcmQuestion.setQuestionUrl(remoteMessage.getData().get(questionUrl));
-                    fcmQuestion.setQuestionText(remoteMessage.getData().get(questionText));
-                    fcmQuestion.setOptionOne(remoteMessage.getData().get(optionOne));
-                    fcmQuestion.setOptionTwo(remoteMessage.getData().get(optionTwo));
-                    fcmQuestion.setOptionThree(remoteMessage.getData().get(optionThree));
-                    fcmQuestion.setOptionFour(remoteMessage.getData().get(optionFour));
-                    fcmQuestion.setAnswerType(remoteMessage.getData().get(answerType));
-                    fcmQuestion.setStatus(remoteMessage.getData().get(status));
+                mainHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        FCMQuestion fcmQuestion = new FCMQuestion();
+                        fcmQuestion.setQuestionId(remoteMessage.getData().get(questionId));
+                        fcmQuestion.setContestQuestionId(remoteMessage.getData().get(contestQuestionId));
+                        fcmQuestion.setCategoryId(remoteMessage.getData().get(categoryId));
+                        fcmQuestion.setDifficulty(remoteMessage.getData().get(difficulty));
+                        fcmQuestion.setQuestionType(remoteMessage.getData().get(questionType));
+                        fcmQuestion.setQuestionUrl(remoteMessage.getData().get(questionUrl));
+                        fcmQuestion.setQuestionText(remoteMessage.getData().get(questionText));
+                        fcmQuestion.setOptionOne(remoteMessage.getData().get(optionOne));
+                        fcmQuestion.setOptionTwo(remoteMessage.getData().get(optionTwo));
+                        fcmQuestion.setOptionThree(remoteMessage.getData().get(optionThree));
+                        fcmQuestion.setOptionFour(remoteMessage.getData().get(optionFour));
+                        fcmQuestion.setAnswerType(remoteMessage.getData().get(answerType));
+                        fcmQuestion.setStatus(remoteMessage.getData().get(status));
 
-                    sendMessage(fcmQuestion);
+                        sendMessage(fcmQuestion);
+                    }
+                });
+        }if(remoteMessage.getFrom().equals("/topics/quizMaster")){
+                if (remoteMessage.getData().get("status").equals("next")) {
+                    //                        waitForUsers.dismissDiologBox();
+
+                    Log.d("sender from QM", "Broadcasting message");
+                    Intent intent = new Intent("custom-event-name");
+                    // You can also include some extra data.
+                    intent.putExtra("message", "This is my message!");
+                    LocalBroadcastManager.getInstance(FCMreceiver.this).sendBroadcast(intent);
                 }
-            });
+                else if(remoteMessage.getData().get("status").equals("start")) {
+                    // Log.d("sender", "Broadcasting message");
 
-            if (/* Check if data needs to be processed by long running job */ true) {
-                // For long-running tasks (10 seconds or more) use Firebase Job Dispatcher.
-                //scheduleJob();
-            } else {
-                // Handle message within 10 seconds
-                //handleNow();
+                    Intent intent= new Intent(FCMreceiver.this,QuizMasterActivity.class);
+                    startActivity(intent);
+                }
+                else if(remoteMessage.getData().get("status").equals("end")){
+                    Intent intent= new Intent(FCMreceiver.this,QuizMasterActivity.class);
+                    startActivity(intent);
+                }
+                Toast.makeText(getApplicationContext(), remoteMessage.getData().get("detail"), Toast.LENGTH_LONG).show();
             }
+
 
         }
 
@@ -93,10 +108,10 @@ public class FCMreceiver extends FirebaseMessagingService {
     }
         //  TODO : change it accordingly - used to send msgs to dynamic game
     private void sendMessage(FCMQuestion fcmQuestion) {
-        Log.d("sender", "Broadcasting message");
-        Intent intent = new Intent("custom-event-name");
+        Log.d("sender", "Broadcasting message User");
+        Intent intent = new Intent("DynamicGame");
         // You can also include some extra data.
-        intent.putExtra("message",(Serializable) fcmQuestion);
+        intent.putExtra("messagequestion",(Serializable) fcmQuestion);
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
     }
 }

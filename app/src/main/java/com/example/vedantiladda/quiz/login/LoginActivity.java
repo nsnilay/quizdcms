@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 
 import com.example.vedantiladda.quiz.Navigation_Activity;
+import com.example.vedantiladda.quiz.QuizMaster.QuizMasterActivity;
 import com.example.vedantiladda.quiz.R;
 import com.example.vedantiladda.quiz.dto.UserDTO;
 import com.example.vedantiladda.quiz.dto.UserLogin;
@@ -33,7 +34,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class LoginActivity extends AppCompatActivity {
 
     private Retrofit retrofit;
-    private String url = "http://10.177.2.200:8082/";
+    private String url = "http://10.177.2.201:8082/";
     private List<String> username;
 
     public boolean isValidEmailAddress2(String email) {
@@ -74,7 +75,12 @@ public class LoginActivity extends AppCompatActivity {
 
         }
         else if(sharedPreferences.getString("Role","ds").equals("Admin")){
-            Intent intent = new Intent(this,UserMain.class);
+            Intent intent = new Intent(this,Navigation_Activity.class);
+            startActivity(intent);
+            finish();
+
+        }else if(sharedPreferences.getString("Role","ds").equals("QuizMaster")){
+            Intent intent = new Intent(this,QuizMasterActivity.class);
             startActivity(intent);
             finish();
 
@@ -134,11 +140,12 @@ public class LoginActivity extends AppCompatActivity {
                             else if(username.get(2).equals("User")){
                                 Intent i = new Intent(LoginActivity.this, UserMain.class);
                                 startActivity(i);
-                                finish();}
-//                                else if(username.get(1).equals("QuizMaster")){
-//                                Intent i = new Intent(LoginActivity.this, QuizMasterActivity.class);
-//                                startActivity(i);
-//                                finish();}
+                                finish();
+                            }else if(username.get(2).equals("QuizMaster")){
+                                Intent i = new Intent(LoginActivity.this, QuizMasterActivity.class);
+                                startActivity(i);
+                                finish();
+                            }
 
                         }
 

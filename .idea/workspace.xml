@@ -11,17 +11,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3a267b4c-d687-4711-af59-4bef48b7115f" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/dto/FCMQuestion.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/firebaseservice/FCMreceiver.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/firebaseservice/TokenManager.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/QuizMaster/DialogsUtils.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/QuizMaster/FCMreceiver.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/QuizMaster/IApiCall.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/QuizMaster/QuizMasterActivity.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/QuizMaster/QuizMaster_recycler_view_adapter.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/QuizMaster/QuizMaterContestActivity.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/QuizMaster/Quiz_mater_question_recycler_view_adapter.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/QuizMaster/TokenManager.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_quiz_master.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_quiz_master_recycler_view_adapter.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_quiz_mater_contest.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_quiz_mater_question_recycler_view_adapter.xml" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/resourceHashesCache.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/resourceHashesCache.bin" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/classAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/classAnalysis.bin" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/jarAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/jarAnalysis.bin" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/javaCompile.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/javaCompile.lock" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/taskHistory.bin" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/taskJars.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/taskJars.bin" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" />
@@ -30,13 +36,16 @@
       <change beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/LeaderboardActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/LeaderboardActivity.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/LeaderboardAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/LeaderboardAdapter.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/dto/OverallDTO.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/dto/OverallDTO.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/firebaseservice/FCMreceiver.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/firebaseservice/FCMreceiver.java" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/login/LoginActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/login/LoginActivity.java" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/user/DynamicGame.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/user/DynamicGame.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/user/GameActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/user/GameActivity.java" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/user/UserApiCall.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/user/UserApiCall.java" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/user/UserMain.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/user/UserMain.java" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_dynamic_game.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_dynamic_game.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -69,104 +78,75 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="FCMreceiver.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/firebaseservice/FCMreceiver.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="810">
-              <caret line="68" column="0" lean-forward="true" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-              <folding>
-                <element signature="e#1882#3262#0" expanded="true" />
-                <element signature="e#3261#3262#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="DynamicGame.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/user/DynamicGame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="157" column="38" lean-forward="false" selection-start-line="157" selection-start-column="38" selection-end-line="157" selection-end-column="38" />
+            <state relative-caret-position="-3038">
+              <caret line="132" column="68" lean-forward="false" selection-start-line="132" selection-start-column="68" selection-end-line="132" selection-end-column="68" />
               <folding>
-                <element signature="e#2031#2582#0" expanded="true" />
-                <element signature="e#2581#2582#0" expanded="true" />
-                <element signature="method#getSuitableAnswer#0;class#DynamicGame#0" expanded="false" />
+                <element signature="e#14503#14504#0" expanded="true" />
+                <element signature="e#14553#14554#0" expanded="true" />
+                <element signature="e#15466#15467#0" expanded="true" />
+                <element signature="e#15522#15523#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity_dynamic_game.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_dynamic_game.xml">
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
+      <file leaf-file-name="LeaderboardAdapter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/LeaderboardAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
-              <caret line="22" column="40" lean-forward="false" selection-start-line="22" selection-start-column="40" selection-end-line="22" selection-end-column="40" />
+            <state relative-caret-position="117">
+              <caret line="39" column="39" lean-forward="false" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="39" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="content_dynamic_game.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_dynamic_game.xml">
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
+      <file leaf-file-name="OverallDTO.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/dto/OverallDTO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="100" column="36" lean-forward="false" selection-start-line="100" selection-start-column="36" selection-end-line="100" selection-end-column="36" />
+            <state relative-caret-position="39">
+              <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+              <folding>
+                <element signature="e#302#303#0" expanded="true" />
+                <element signature="e#342#343#0" expanded="true" />
+                <element signature="e#502#503#0" expanded="true" />
+                <element signature="e#533#534#0" expanded="true" />
+                <element signature="e#582#583#0" expanded="true" />
+                <element signature="e#622#623#0" expanded="true" />
+                <element signature="e#865#866#0" expanded="true" />
+                <element signature="e#892#893#0" expanded="true" />
+                <element signature="e#936#937#0" expanded="true" />
+                <element signature="e#968#969#0" expanded="true" />
+                <element signature="e#1001#1002#0" expanded="true" />
+                <element signature="e#1030#1031#0" expanded="true" />
+                <element signature="e#1074#1075#0" expanded="true" />
+                <element signature="e#1110#1111#0" expanded="true" />
+                <element signature="e#1152#1153#0" expanded="true" />
+                <element signature="e#1186#1187#0" expanded="true" />
+                <element signature="e#1244#1245#0" expanded="true" />
+                <element signature="e#1290#1291#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FCMreceiver.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/firebaseservice/FCMreceiver.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-623">
+              <caret line="51" column="22" lean-forward="false" selection-start-line="51" selection-start-column="22" selection-end-line="51" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <file leaf-file-name="LeaderboardActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/LeaderboardActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
-              <caret line="21" column="67" lean-forward="false" selection-start-line="21" selection-start-column="67" selection-end-line="21" selection-end-column="67" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserDynamicContests.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/user/UserDynamicContests.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="235">
-              <caret line="100" column="55" lean-forward="false" selection-start-line="100" selection-start-column="55" selection-end-line="100" selection-end-column="55" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserContests.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/user/UserContests.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="77" column="30" lean-forward="false" selection-start-line="74" selection-start-column="8" selection-end-line="77" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ContestNames.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/user/ContestNames.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserAnswerDTO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/dto/UserAnswerDTO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="38" lean-forward="false" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
+            <state relative-caret-position="359">
+              <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -175,13 +155,47 @@
       <file leaf-file-name="GameActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/user/GameActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="382">
-              <caret line="367" column="0" lean-forward="false" selection-start-line="367" selection-start-column="0" selection-end-line="368" selection-end-column="0" />
+            <state relative-caret-position="460">
+              <caret line="589" column="0" lean-forward="false" selection-start-line="589" selection-start-column="0" selection-end-line="589" selection-end-column="0" />
               <folding>
-                <element signature="imports" expanded="true" />
                 <element signature="method#countSkips#0;class#GameActivity#0" expanded="false" />
-                <element signature="method#displayQuestion#0;class#GameActivity#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activity_game.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_game.xml">
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="214">
+              <caret line="22" column="35" lean-forward="false" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="content_game.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_game.xml">
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="134">
+              <caret line="38" column="37" lean-forward="false" selection-start-line="38" selection-start-column="37" selection-end-line="38" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ContestCreationActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/ContestCreationActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1688">
+              <caret line="169" column="64" lean-forward="false" selection-start-line="169" selection-start-column="64" selection-end-line="169" selection-end-column="64" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -204,6 +218,12 @@
       <find>points</find>
       <find>sequence</find>
       <find>Share</find>
+      <find>Firebase</find>
+      <find>Game</find>
+      <find>userId</find>
+      <find>8080</find>
+      <find>Shared</find>
+      <find>Leaderboard</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -2245,12 +2265,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/adapter/RVContestNameAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_dynamic_contests.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/user/UserDynamicContests.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_dynamic_game.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/dto/ContestQuestionDTO.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/dto/ContestDTO.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/user/ContestNames.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/dto/UserAnswerDTO.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/LoginActivity.java" />
@@ -2268,7 +2282,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/ContentScreeningActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_content_screening.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/QuestionBankActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/LeaderboardActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_contest_rules.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/dto/QuestionDTO.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_leaderboard.xml" />
@@ -2279,22 +2292,30 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/ContestCreationActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/PublishActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_game.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/dto/OverallDTO.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/user/GameActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/LeaderboardAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/HardFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/MediumFragment.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
-        <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/user/UserMain.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/login/LoginActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/dto/FCMQuestion.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/user/UserApiCall.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/content_dynamic_game.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/user/DynamicGame.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/QuizMaster/IApiCall.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/QuizMaster/Quiz_mater_question_recycler_view_adapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/QuizMaster/QuizMaster_recycler_view_adapter.java" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_quiz_master.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/login/LoginActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/QuizMaster/QuizMaterContestActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/QuizMaster/FCMreceiver.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/QuizMaster/QuizMasterActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/firebaseservice/FCMreceiver.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/user/UserMain.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/content_dynamic_game.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/user/UserApiCall.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/dto/OverallDTO.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/LeaderboardActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/user/GameActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/user/DynamicGame.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/LeaderboardAdapter.java" />
       </list>
     </option>
   </component>
@@ -2331,11 +2352,6 @@
             <path>
               <item name="quizdcms" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="manifests" type="f94875db:AndroidManifestsGroupNode" />
-            </path>
-            <path>
-              <item name="quizdcms" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
             </path>
             <path>
@@ -2343,13 +2359,6 @@
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="quiz" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="quizdcms" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="quiz" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="adapter" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="quizdcms" type="1abcf292:AndroidViewProjectNode" />
@@ -2534,7 +2543,7 @@
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="settings.editor.selected.configurable" value="android.sdk-updates" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="device.picker.selection" value="PLEGAR1771206224" />
+    <property name="device.picker.selection" value="986990b3" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/nilayshrivastava/Documents/GitHub/quizdcms/app/src/main/java/com/example/vedantiladda/quiz/user/GameActivity.java&#10;User&#9;FILE&#9;file:///Users/nilayshrivastava/Documents/GitHub/quizdcms/app/src/main/java/com/example/vedantiladda/quiz/user/UserDynamicContests.java" />
     <property name="android.profiler.active" value="true" />
     <property name="DEBUGGABLE_DEVICE" value="emulator-5554" />
@@ -2550,6 +2559,8 @@
       <recent name="" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
+      <recent name="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/QuizMaster" />
       <recent name="$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/firebaseservice" />
     </key>
   </component>
@@ -2731,35 +2742,35 @@
     <editor active="true" />
     <layout>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32840723" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33006537" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25249168" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32899022" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32899022" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33222592" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33222592" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.226979" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="8" side_tool="false" content_ui="combo" />
       <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3255814" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39700997" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32890365" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25249168" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32899022" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32899022" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.226979" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39800996" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -2799,150 +2810,33 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="7" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/firebaseservice/FCMreceiver.java</url>
+          <line>44</line>
+          <properties />
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="8" />
     </breakpoint-manager>
     <watches-manager />
   </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>remoteMessage.getFrom()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>remoteMessage.getTo()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/dto/ScreenDTO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="26" lean-forward="false" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
-          <folding>
-            <element signature="e#119#120#0" expanded="false" />
-            <element signature="e#144#145#0" expanded="false" />
-            <element signature="e#180#181#0" expanded="false" />
-            <element signature="e#208#209#0" expanded="false" />
-            <element signature="e#241#242#0" expanded="false" />
-            <element signature="e#270#271#0" expanded="false" />
-            <element signature="e#501#502#0" expanded="false" />
-            <element signature="e#537#538#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_holder.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="38" lean-forward="false" selection-start-line="0" selection-start-column="38" selection-end-line="0" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/ContentAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="35" column="86" lean-forward="false" selection-start-line="35" selection-start-column="86" selection-end-line="35" selection-end-column="86" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1589#2218#0" expanded="false" />
-            <element signature="e#2217#2218#0" expanded="false" />
-            <element signature="e#2343#2344#0" expanded="false" />
-            <element signature="e#2388#2389#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_content_screening.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="38" lean-forward="false" selection-start-line="0" selection-start-column="38" selection-end-line="0" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/ContentScreeningActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1185">
-          <caret line="103" column="51" lean-forward="false" selection-start-line="103" selection-start-column="51" selection-end-line="103" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/QuestionBankActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1830">
-          <caret line="140" column="0" lean-forward="false" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_leaderboard.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="1470">
-          <caret line="98" column="46" lean-forward="false" selection-start-line="98" selection-start-column="46" selection-end-line="98" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/leaderboard_content_holder.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_contest_rules.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="35" lean-forward="false" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/LeaderboardActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="238" column="64" lean-forward="false" selection-start-line="238" selection-start-column="64" selection-end-line="238" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/Navigation_Activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="215" column="31" lean-forward="false" selection-start-line="215" selection-start-column="31" selection-end-line="215" selection-end-column="31" />
-          <folding>
-            <element signature="e#3331#3362#0" expanded="false" />
-            <element signature="e#3364#3396#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/LeaderboardAdapter1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="38" column="56" lean-forward="false" selection-start-line="38" selection-start-column="47" selection-end-line="38" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/ContestCreationActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="169" column="64" lean-forward="false" selection-start-line="169" selection-start-column="64" selection-end-line="169" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/CategoryWindowOnItemSelectListner.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -2975,14 +2869,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/LeaderboardAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="71">
-          <caret line="39" column="18" lean-forward="false" selection-start-line="39" selection-start-column="18" selection-end-line="39" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/MediumFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="188">
@@ -2996,26 +2882,6 @@
         <state relative-caret-position="195">
           <caret line="40" column="41" lean-forward="false" selection-start-line="40" selection-start-column="41" selection-end-line="40" selection-end-column="41" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/dto/OverallDTO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="35" column="34" lean-forward="false" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
-          <folding>
-            <element signature="e#409#410#0" expanded="false" />
-            <element signature="e#445#446#0" expanded="false" />
-            <element signature="e#507#508#0" expanded="false" />
-            <element signature="e#557#558#0" expanded="false" />
-            <element signature="e#592#593#0" expanded="false" />
-            <element signature="e#619#620#0" expanded="false" />
-            <element signature="e#663#664#0" expanded="false" />
-            <element signature="e#695#696#0" expanded="false" />
-            <element signature="e#762#763#0" expanded="false" />
-            <element signature="e#811#812#0" expanded="false" />
-            <element signature="e#851#852#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3041,31 +2907,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="55" lean-forward="false" selection-start-line="10" selection-start-column="55" selection-end-line="10" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="64" column="54" lean-forward="false" selection-start-line="64" selection-start-column="54" selection-end-line="64" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-manifest">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
@@ -3084,28 +2931,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_game.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="31" lean-forward="false" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_game.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="22" column="37" lean-forward="false" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/ContestRulesActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="124">
@@ -3116,26 +2941,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="34" column="65" lean-forward="false" selection-start-line="34" selection-start-column="65" selection-end-line="34" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/user/Leaderboard.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/login/LoginActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-88">
-          <caret line="35" column="50" lean-forward="false" selection-start-line="35" selection-start-column="50" selection-end-line="35" selection-end-column="50" />
           <folding />
         </state>
       </provider>
@@ -3164,77 +2973,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/user/UserApiCall.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="28" column="23" lean-forward="false" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/dto/FCMQuestion.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="48" lean-forward="false" selection-start-line="4" selection-start-column="48" selection-end-line="4" selection-end-column="48" />
-          <folding>
-            <element signature="e#599#600#0" expanded="false" />
-            <element signature="e#632#633#0" expanded="false" />
-            <element signature="e#684#685#0" expanded="false" />
-            <element signature="e#728#729#0" expanded="false" />
-            <element signature="e#772#773#0" expanded="false" />
-            <element signature="e#812#813#0" expanded="false" />
-            <element signature="e#973#974#0" expanded="false" />
-            <element signature="e#1006#1007#0" expanded="false" />
-            <element signature="e#1058#1059#0" expanded="false" />
-            <element signature="e#1102#1103#0" expanded="false" />
-            <element signature="e#1139#1140#0" expanded="false" />
-            <element signature="e#1172#1173#0" expanded="false" />
-            <element signature="e#1224#1225#0" expanded="false" />
-            <element signature="e#1268#1269#0" expanded="false" />
-            <element signature="e#1307#1308#0" expanded="false" />
-            <element signature="e#1342#1343#0" expanded="false" />
-            <element signature="e#1398#1399#0" expanded="false" />
-            <element signature="e#1446#1447#0" expanded="false" />
-            <element signature="e#1484#1485#0" expanded="false" />
-            <element signature="e#1518#1519#0" expanded="false" />
-            <element signature="e#1572#1573#0" expanded="false" />
-            <element signature="e#1618#1619#0" expanded="false" />
-            <element signature="e#1654#1655#0" expanded="false" />
-            <element signature="e#1686#1687#0" expanded="false" />
-            <element signature="e#1736#1737#0" expanded="false" />
-            <element signature="e#1778#1779#0" expanded="false" />
-            <element signature="e#1814#1815#0" expanded="false" />
-            <element signature="e#1846#1847#0" expanded="false" />
-            <element signature="e#1896#1897#0" expanded="false" />
-            <element signature="e#1938#1939#0" expanded="false" />
-            <element signature="e#1976#1977#0" expanded="false" />
-            <element signature="e#2010#2011#0" expanded="false" />
-            <element signature="e#2064#2065#0" expanded="false" />
-            <element signature="e#2110#2111#0" expanded="false" />
-            <element signature="e#2147#2148#0" expanded="false" />
-            <element signature="e#2180#2181#0" expanded="false" />
-            <element signature="e#2232#2233#0" expanded="false" />
-            <element signature="e#2276#2277#0" expanded="false" />
-            <element signature="e#2313#2314#0" expanded="false" />
-            <element signature="e#2346#2347#0" expanded="false" />
-            <element signature="e#2398#2399#0" expanded="false" />
-            <element signature="e#2442#2443#0" expanded="false" />
-            <element signature="e#2475#2476#0" expanded="false" />
-            <element signature="e#2504#2505#0" expanded="false" />
-            <element signature="e#2548#2549#0" expanded="false" />
-            <element signature="e#2584#2585#0" expanded="false" />
-            <element signature="e#2617#2618#0" expanded="false" />
-            <element signature="e#2646#2647#0" expanded="false" />
-            <element signature="e#2690#2691#0" expanded="false" />
-            <element signature="e#2726#2727#0" expanded="false" />
-            <element signature="e#2765#2766#0" expanded="false" />
-            <element signature="e#2800#2801#0" expanded="false" />
-            <element signature="e#2856#2857#0" expanded="false" />
-            <element signature="e#2904#2905#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/user/UserContests.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -3248,18 +2986,6 @@
         <state relative-caret-position="180">
           <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/user/GameActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="367" column="0" lean-forward="false" selection-start-line="367" selection-start-column="0" selection-end-line="368" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#countSkips#0;class#GameActivity#0" expanded="false" />
-            <element signature="method#displayQuestion#0;class#GameActivity#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3279,21 +3005,114 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/QuizMaster.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="21" column="67" lean-forward="false" selection-start-line="21" selection-start-column="67" selection-end-line="21" selection-end-column="67" />
+        <state relative-caret-position="30">
+          <caret line="2" column="23" lean-forward="false" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/user/UserMain.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_quiz_master_recycler_view_adapter.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/QuizMaster/QuizMaster_recycler_view_adapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="32" lean-forward="false" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="55" lean-forward="false" selection-start-line="10" selection-start-column="55" selection-end-line="10" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="477">
+          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_quiz_master.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="42" column="26" lean-forward="false" selection-start-line="42" selection-start-column="26" selection-end-line="42" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/QuizMaster/TokenManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/QuizMaster/Quiz_mater_question_recycler_view_adapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
           <folding>
-            <element signature="e#1571#1691#0" expanded="false" />
+            <element signature="imports" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/QuizMaster/DialogsUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="71" column="0" lean-forward="false" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/QuizMaster/QuizMaterContestActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="189" column="43" lean-forward="false" selection-start-line="189" selection-start-column="43" selection-end-line="189" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#7047#7390#0" expanded="false" />
+            <element signature="e#7389#7390#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/dto/FCMQuestion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="4" column="48" lean-forward="false" selection-start-line="4" selection-start-column="48" selection-end-line="4" selection-end-column="48" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3303,7 +3122,7 @@
       </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="261">
-          <caret line="22" column="40" lean-forward="false" selection-start-line="22" selection-start-column="40" selection-end-line="22" selection-end-column="40" />
+          <caret line="22" column="41" lean-forward="false" selection-start-line="22" selection-start-column="41" selection-end-line="22" selection-end-column="41" />
           <folding />
         </state>
       </provider>
@@ -3313,39 +3132,183 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="100" column="36" lean-forward="false" selection-start-line="100" selection-start-column="36" selection-end-line="100" selection-end-column="36" />
+        <state relative-caret-position="233">
+          <caret line="101" column="0" lean-forward="false" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/user/UserApiCall.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="32" column="103" lean-forward="false" selection-start-line="32" selection-start-column="103" selection-end-line="32" selection-end-column="103" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/QuizMaster/IApiCall.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="11" column="10" lean-forward="false" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-288">
+          <caret line="21" column="67" lean-forward="false" selection-start-line="21" selection-start-column="67" selection-end-line="21" selection-end-column="67" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/user/UserDynamicContests.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
+        <state relative-caret-position="1095">
           <caret line="100" column="55" lean-forward="false" selection-start-line="100" selection-start-column="55" selection-end-line="100" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/user/UserMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6">
+          <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+          <folding>
+            <element signature="e#1571#1691#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/QuizMaster/FCMreceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="54" column="54" lean-forward="false" selection-start-line="54" selection-start-column="54" selection-end-line="54" selection-end-column="54" />
+          <folding>
+            <element signature="e#1217#2586#0" expanded="false" />
+            <element signature="e#2585#2586#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/QuizMaster/QuizMasterActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="51" column="25" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/firebaseservice/FCMreceiver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="68" column="0" lean-forward="true" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+        <state relative-caret-position="-623">
+          <caret line="51" column="22" lean-forward="false" selection-start-line="51" selection-start-column="22" selection-end-line="51" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/dto/OverallDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="39">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
           <folding>
-            <element signature="e#1882#3262#0" expanded="true" />
-            <element signature="e#3261#3262#0" expanded="true" />
+            <element signature="e#302#303#0" expanded="true" />
+            <element signature="e#342#343#0" expanded="true" />
+            <element signature="e#502#503#0" expanded="true" />
+            <element signature="e#533#534#0" expanded="true" />
+            <element signature="e#582#583#0" expanded="true" />
+            <element signature="e#622#623#0" expanded="true" />
+            <element signature="e#865#866#0" expanded="true" />
+            <element signature="e#892#893#0" expanded="true" />
+            <element signature="e#936#937#0" expanded="true" />
+            <element signature="e#968#969#0" expanded="true" />
+            <element signature="e#1001#1002#0" expanded="true" />
+            <element signature="e#1030#1031#0" expanded="true" />
+            <element signature="e#1074#1075#0" expanded="true" />
+            <element signature="e#1110#1111#0" expanded="true" />
+            <element signature="e#1152#1153#0" expanded="true" />
+            <element signature="e#1186#1187#0" expanded="true" />
+            <element signature="e#1244#1245#0" expanded="true" />
+            <element signature="e#1290#1291#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/ContestCreationActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1688">
+          <caret line="169" column="64" lean-forward="false" selection-start-line="169" selection-start-column="64" selection-end-line="169" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_game.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="22" column="35" lean-forward="false" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_game.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="38" column="37" lean-forward="false" selection-start-line="38" selection-start-column="37" selection-end-line="38" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/user/GameActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="589" column="0" lean-forward="false" selection-start-line="589" selection-start-column="0" selection-end-line="589" selection-end-column="0" />
+          <folding>
+            <element signature="method#countSkips#0;class#GameActivity#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/login/LoginActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1120">
+          <caret line="36" column="45" lean-forward="false" selection-start-line="36" selection-start-column="45" selection-end-line="36" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/LeaderboardActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="359">
+          <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/LeaderboardAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="39" column="39" lean-forward="false" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="39" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vedantiladda/quiz/user/DynamicGame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="157" column="38" lean-forward="false" selection-start-line="157" selection-start-column="38" selection-end-line="157" selection-end-column="38" />
+        <state relative-caret-position="-3038">
+          <caret line="132" column="68" lean-forward="false" selection-start-line="132" selection-start-column="68" selection-end-line="132" selection-end-column="68" />
           <folding>
-            <element signature="e#2031#2582#0" expanded="true" />
-            <element signature="e#2581#2582#0" expanded="true" />
-            <element signature="method#getSuitableAnswer#0;class#DynamicGame#0" expanded="false" />
+            <element signature="e#14503#14504#0" expanded="true" />
+            <element signature="e#14553#14554#0" expanded="true" />
+            <element signature="e#15466#15467#0" expanded="true" />
+            <element signature="e#15522#15523#0" expanded="true" />
           </folding>
         </state>
       </provider>
